@@ -3,6 +3,23 @@
 # 打印执行信息
 echo "开始构建项目..."
 
+# 查找并终止正在运行的Spring Boot进程
+echo "检查是否有正在运行的Spring Boot进程..."
+SPRING_PID=$(ps aux | grep 'spring-boot' | grep -v grep | awk '{print $2}')
+
+if [ ! -z "$SPRING_PID" ]; then
+    echo "发现正在运行的Spring Boot进程: $SPRING_PID"
+    echo "正在终止进程..."
+    kill -9 $SPRING_PID
+    if [ $? -eq 0 ]; then
+        echo "进程已成功终止"
+    else
+        echo "进程终止失败"
+    fi
+else
+    echo "没有发现正在运行的Spring Boot进程"
+fi
+
 # 执行 mvn install 命令
 echo "执行 mvn install..."
 mvn install
