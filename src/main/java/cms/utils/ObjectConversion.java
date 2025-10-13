@@ -13,7 +13,7 @@ import org.joda.time.format.DateTimeFormatter;
 public class ObjectConversion {
 	private static final DateTimeFormatter date_format = DateTimeFormat.forPattern("yyyy-MM-dd");
 	private static final DateTimeFormatter time_format = DateTimeFormat.forPattern("HH:mm:ss");
-	private static final DateTimeFormatter timestamp_format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.S");
+	private static final DateTimeFormatter timestamp_format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.SSS");
 	
 	
 	public static final String INTEGER = "Integer";
