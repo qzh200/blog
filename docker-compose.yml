@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: 18yk3iuztwn8ax.xuanyuan.run/library/mysql
+    container_name: mysql
+    ports:
+      - "33066:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456  # 请根据需要修改密码
+      MYSQL_DATABASE: bbs-pro  # 可选：创建默认数据库
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - bbs-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  spring-boot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: spring-boot-app
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/bbs-pro?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL&allowPublicKeyRetrieval=true&useSSL=false&rewriteBatchedStatements=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123456
+      - JAVA_OPTS=-Dfile.encoding=utf-8
+    volumes:
+      - ./target:/app/target
+    networks:
+      - bbs-network
+
+volumes:
+  mysql-data:
+
+networks:
+  bbs-network:
+    driver: bridge
