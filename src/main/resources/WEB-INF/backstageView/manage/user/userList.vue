@@ -5,10 +5,16 @@
 			<div class="navbar" style="display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; overflow-x: auto;">
 				<el-button type="primary" plain size="small" @click="downloadTemplate">下载批量导入模板</el-button>
 				<el-upload
+					ref="upload"
 					class="upload-demo"
 					:action="uploadUrl"
 					:show-file-list="false"
-					:on-success="handleSuccess">
+					:before-upload="beforeUpload"
+					:on-change="handleFileChange"
+					:on-progress="onProgress"
+					:on-success="handleSuccess"
+					:on-error="handleError"
+					:auto-upload="false">
 					<el-button type="primary" plain size="small">批量导入</el-button>
 				</el-upload>
 				<div style="display: flex; gap: 10px; flex-shrink: 0;">
@@ -19,35 +25,93 @@
 					<el-button type="primary" plain size="small"  @click="deleteUser($event)">批量删除</el-button>
 				</div>
 			</div>
+			
+			<!-- 导入进度条 -->
+			<el-progress 
+				v-if="showProgress" 
+				:percentage="uploadProgress" 
+				:status="progressStatus"
+				style="margin-top: 15px;">
+			</el-progress>
+			
+			<!-- 导入结果反馈 -->
+		<el-dialog 
+			v-model="showResultDialog" 
+			title="导入结果" 
+			width="60%"
+			:close-on-click-modal="false">
+			<div class="import-result">
+				<div class="result-summary">
+					<p>总条数：{{ importResult.total }}</p>
+					<p>成功条数：{{ importResult.success }}</p>
+					<p>失败条数：{{ importResult.failed }}</p>
+				</div>
+				
+				<template v-if="importResult.errors && importResult.errors.length > 0">
+					<el-divider>错误详情</el-divider>
+					<el-table :data="importResult.errors" style="width: 100%">
+						<el-table-column prop="row" label="行号" width="80"></el-table-column>
+						<el-table-column prop="username" label="用户名"></el-table-column>
+						<el-table-column 
+							label="错误信息" 
+							show-overflow-tooltip
+							:formatter="formatErrorMessage">
+						</el-table-column>
+					</el-table>
+				</template>
+			</div>
+			<template #footer>
+				<el-button @click="showResultDialog = false">关闭</el-button>
+			</template>
+		</el-dialog>
+			
+			<!-- 导入前验证对话框 -->
+			<el-dialog 
+				v-model="showVerifyDialog" 
+				title="导入数据验证" 
+				width="60%"
+				:close-on-click-modal="false">
+				<div class="verify-info">
+					<p>检测到数据：{{ verifyInfo.totalRows }} 条</p>
+					<p v-if="verifyInfo.repeatRows > 0" class="text-warning">发现重复数据：{{ verifyInfo.repeatRows }} 条</p>
+					<p v-if="verifyInfo.invalidRows > 0" class="text-danger">发现无效数据：{{ verifyInfo.invalidRows }} 条</p>
+					<p v-if="verifyInfo.validRows > 0" class="text-success">有效数据：{{ verifyInfo.validRows }} 条</p>
+				</div>
+				<template #footer>
+					<el-button @click="showVerifyDialog = false">取消</el-button>
+					<el-button type="primary" @click="confirmImport" :disabled="verifyInfo.validRows === 0">确认导入</el-button>
+				</template>
+			</el-dialog>
+			
 			<div class="data-table" >
 				<el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" stripe empty-text="没有内容">
 					<el-table-column type="selection" ></el-table-column>
 					<el-table-column label="账号" align="center">
-                    	<template #default="scope">
-                        
-                        	<div class="multipleInfo-wrapper" >
-                            <div>{{scope.row.account}}</div>
+				    	<template #default="scope">
+				    	
+				        	<div class="multipleInfo-wrapper" >
+				            <div>{{scope.row.account}}</div>
 				            	<div class="multipleInfo-wrapper-blue" v-if="scope.row.type ==20">
-				                 	手机号{{scope.row.mobile}}
-				                </div>
-				                <div class="multipleInfo-wrapper-green" v-if="scope.row.type !=20 && scope.row.mobile !=null && scope.row.mobile !='' ">
-									绑定手机{{scope.row.mobile}}
-				                </div>
-								<div class="multipleInfo-wrapper-tangerine" v-if="scope.row.type ==30">
-									邮箱{{scope.row.email}}
-								</div>
-								<div class="multipleInfo-wrapper-pink" v-if="scope.row.type !=30 && scope.row.email !=null && scope.row.email !='' ">
-									绑定邮箱{{scope.row.email}}
-								</div>
-								<el-tag effect="dark"  v-if="scope.row.cancelAccountTime !='-1'" type="danger" class="tag-wrapper">已注销</el-tag>
-				              </div>  
+				            手机号{{scope.row.mobile}}
+				            </div>
+				            <div class="multipleInfo-wrapper-green" v-if="scope.row.type !=20 && scope.row.mobile !=null && scope.row.mobile !='' ">
+							绑定手机{{scope.row.mobile}}
+				            </div>
+							<div class="multipleInfo-wrapper-tangerine" v-if="scope.row.type ==30">
+							邮箱{{scope.row.email}}
+						</div>
+							<div class="multipleInfo-wrapper-pink" v-if="scope.row.type !=30 && scope.row.email !=null && scope.row.email !='' ">
+							绑定邮箱{{scope.row.email}}
+						</div>
+						<el-tag effect="dark"  v-if="scope.row.cancelAccountTime !='-1'" type="danger" class="tag-wrapper">已注销</el-tag>
+				          </div>  
 				    	</template>
 				    </el-table-column>
 					<el-table-column prop="nickname" label="呢称" align="center" ></el-table-column>
 					<el-table-column label="头像" align="center" min-width="100">
 						<template #default="scope">
-				        	
-			          		<div class="user-avatar-wrapper" >
+					    	
+				          	<div class="user-avatar-wrapper" >
 								<div class="avatar-badge" v-if="scope.row.avatarName == null || scope.row.avatarName == ''">
 									<el-avatar :size="48" icon="el-icon-user-solid"></el-avatar>
 								</div>
@@ -55,7 +119,7 @@
 									<el-avatar :size="48" :src="scope.row.avatarPath+'100x100/'+scope.row.avatarName"></el-avatar>
 								</div>
 							</div>
-				        	
+					    	
 				    	</template>
 					</el-table-column>
 					<el-table-column label="类型" align="center" width="110">
@@ -74,7 +138,7 @@
 						<template #default="scope">
 							<el-tag effect="dark"  v-if="scope.row.state == 1" type="success" class="tag-wrapper">启用</el-tag>
 							<el-tag effect="dark"  v-if="scope.row.state == 2" type="info" class="tag-wrapper">停用</el-tag>
-				    		<el-tag effect="dark"  v-if="scope.row.state ==11" type="warning" class="tag-wrapper">启用时删除</el-tag>
+					    	<el-tag effect="dark"  v-if="scope.row.state ==11" type="warning" class="tag-wrapper">启用时删除</el-tag>
 							<el-tag effect="dark"  v-if="scope.row.state ==12" type="danger" class="tag-wrapper">停用时删除</el-tag>
 				    	</template>
 					</el-table-column>
@@ -88,7 +152,7 @@
 								</el-button-group>
 							</div>
 				    	</template>
-					
+				
 					</el-table-column>
 				</el-table>
 				<div class="pagination-wrapper" v-if="isShowPage">
@@ -119,6 +183,26 @@ export default({
 			maxresult: 12, //每页显示记录数
 			isShowPage:false,//是否显示分页 maxresult没返回结果前就显示会导致分页栏显示页码错误
 			
+			// 导入相关变量
+		uploadUrl: '/control/user/import/upload',
+		uploadProgress: 0,
+		showProgress: false,
+		progressStatus: 'success',
+		showResultDialog: false,
+		showVerifyDialog: false,
+		importResult: {
+			total: 0,
+			success: 0,
+			failed: 0,
+			errors: []
+		},
+		verifyInfo: {
+			totalRows: 0,
+			validRows: 0,
+			invalidRows: 0,
+			repeatRows: 0
+		},
+		currentFile: null
 		};
 	},
 	
@@ -136,13 +220,185 @@ export default({
 		this.queryUserList();
 	},
 	methods : {
-	downloadTemplate() {
-		window.open('/control/user/import/template');
-	},
-	handleSuccess(response) {
-		this.$message.success(response);
-		this.queryUserList();
-	},
+		downloadTemplate() {
+			window.open('/control/user/import/template');
+		},
+		
+		// 文件选择变化处理
+		handleFileChange(file, fileList) {
+			// 保存当前文件引用
+			this.currentFile = file.raw;
+			
+			// 检查文件类型
+			const isExcel = file.raw.type === 'application/vnd.ms-excel' || 
+				file.raw.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+			const isLt10M = file.raw.size / 1024 / 1024 < 10;
+
+			if (!isExcel) {
+				this.$message.error('上传文件只能是 Excel 格式!');
+				// 清除文件选择
+				this.$refs.upload.clearFiles();
+				return;
+			}
+			if (!isLt10M) {
+				this.$message.error('上传文件大小不能超过 10MB!');
+				// 清除文件选择
+				this.$refs.upload.clearFiles();
+				return;
+			}
+			
+			// 进行文件预验证
+			this.verifyExcelFile(file.raw);
+		},
+		
+		// 上传前验证文件
+		beforeUpload(file) {
+			// 由于使用了on-change，这里可以保持简单
+			return false; // 阻止自动上传，等待用户确认
+		},
+		
+		// 验证Excel文件内容
+		verifyExcelFile(file) {
+			const formData = new FormData();
+			formData.append('file', file);
+			
+			this.$ajax({
+				method: 'post',
+				url: '/control/user/import/verify',
+				data: formData,
+				processData: false,
+				contentType: false
+			}).then(response => {
+				if (response && response.data) {
+					// 后端返回的就是JSON对象，不需要再次解析
+					if (response.data.success) {
+						// 显示验证结果
+						this.verifyInfo = {
+							totalRows: response.data.totalRows || 0,
+							validRows: response.data.validRows || 0,
+							invalidRows: response.data.invalidRows || 0,
+							repeatRows: response.data.repeatRows || 0
+						};
+						this.showVerifyDialog = true;
+					} else {
+						this.$message.error(response.data.message || '文件验证失败');
+					}
+				}
+			}).catch(error => {
+				console.error('文件验证失败:', error);
+				this.$message.error('文件验证失败，请重试');
+			});
+		},
+		
+		// 确认导入
+		confirmImport() {
+			this.showVerifyDialog = false;
+			
+			// 显示进度条
+			this.showProgress = true;
+			this.uploadProgress = 0;
+			this.progressStatus = 'success';
+			
+			// 执行上传
+			const formData = new FormData();
+			formData.append('file', this.currentFile);
+			
+			// 使用原生XMLHttpRequest来获取上传进度
+			const xhr = new XMLHttpRequest();
+			const _self = this;
+			
+			xhr.upload.addEventListener('progress', function(e) {
+				if (e.lengthComputable) {
+					const percent = Math.round((e.loaded / e.total) * 100);
+					_self.uploadProgress = percent;
+				}
+			}, false);
+			
+			xhr.addEventListener('load', function() {
+				if (xhr.status === 200) {
+					try {
+						const response = JSON.parse(xhr.responseText);
+						_self.handleImportResult(response);
+					} catch (error) {
+						_self.$message.error('解析导入结果失败');
+						_self.showProgress = false;
+					}
+				} else {
+					_self.$message.error('导入失败，请重试');
+					_self.showProgress = false;
+				}
+			}, false);
+			
+			xhr.addEventListener('error', function() {
+				_self.$message.error('网络错误，请重试');
+				_self.showProgress = false;
+			}, false);
+			
+			xhr.open('POST', _self.uploadUrl);
+			xhr.send(formData);
+		},
+		
+		// 格式化错误信息
+		formatErrorMessage(row, column, cellValue) {
+			// 如果有直接的message字段，直接返回
+			if (row.message) {
+				return row.message;
+			}
+			
+			// 否则检查具体的字段错误
+			let errorMessages = [];
+			if (row.usernameError) {
+				errorMessages.push(`用户名: ${row.usernameError}`);
+			}
+			if (row.mobileError) {
+				errorMessages.push(`手机号: ${row.mobileError}`);
+			}
+			
+			return errorMessages.length > 0 ? errorMessages.join('; ') : '未知错误';
+		},
+		
+		// 处理导入结果
+		handleImportResult(response) {
+			this.showProgress = false;
+			
+			if (response && response.success) {
+				// 映射后端返回的数据格式到前端需要的格式
+				this.importResult = {
+					total: response.totalCount || 0,
+					success: response.successCount || 0,
+					failed: response.failedCount || 0,
+					errors: response.errors || []
+				};
+				this.showResultDialog = true;
+				this.queryUserList(); // 刷新用户列表
+			} else {
+				this.$message.error(response.message || '导入失败');
+			}
+		},
+		
+		// 上传进度回调
+		onProgress(event, file, fileList) {
+			if (event.lengthComputable) {
+				this.uploadProgress = Math.round((event.loaded / event.total) * 100);
+			}
+		},
+		
+		// 上传成功回调
+		handleSuccess(response) {
+			// 由于我们使用XMLHttpRequest处理上传，这个方法可能不会被调用
+			// 但保留以防止意外情况
+			this.showProgress = false;
+			this.handleImportResult(response);
+		},
+		
+		// 上传错误回调
+		handleError(error) {
+			this.showProgress = false;
+			this.progressStatus = 'exception';
+			this.$message.error('导入失败，请重试');
+			console.error('导入错误:', error);
+		},
+		
 		//查询用户列表
 		queryUserList : function() {
 			let _self = this;
@@ -173,13 +429,11 @@ export default({
 			 
 			    			_self.totalrecord = parseInt(pageView.totalrecord);//服务器返回的long类型已转为String类型
 			    			_self.currentpage = pageView.currentpage;
-							_self.totalpage = parseInt(pageView.totalpage);//服务器返回的long类型已转为String类型
-							_self.maxresult = pageView.maxresult;
-							_self.isShowPage = true;//显示分页栏
+						_self.totalpage = parseInt(pageView.totalpage);//服务器返回的long类型已转为String类型
+						_self.maxresult = pageView.maxresult;
+						_self.isShowPage = true;//显示分页栏
 			    		}
 			    	}else if(returnValue.code === 500){//错误
-			    		
-			    		
 			    	}
 			    }
 			})
@@ -207,35 +461,35 @@ export default({
        		}
         	target.blur();
 			
+		
+			let _self = this;
+			if (row) {//选中行
+				this.$refs.multipleTable.toggleRowSelection(row,true);
+			}
 			
-	    	let _self = this;
-	    	if (row) {//选中行
-	    		this.$refs.multipleTable.toggleRowSelection(row,true);
-	    	}
-	    	
-	    	if(this.multipleSelection.length <1){
-	    		this.$message.error('至少要选择一行数据');
-	    		return;
-	    	}
-	    	
-	    	
-	    	
-	    	this.$confirm('此操作将删除该项, 是否继续?', '提示', {
+			if(this.multipleSelection.length <1){
+				this.$message.error('至少要选择一行数据');
+				return;
+			}
+			
+			
+			
+			this.$confirm('此操作将删除该项, 是否继续?', '提示', {
 	            confirmButtonText: '确定',
 	            cancelButtonText: '取消',
 	            type: 'warning'
 	        }).then(() => {
-	        	let formData = new FormData();
-	        	for(let i=0; i<this.multipleSelection.length; i++){
-		    		let rowData = this.multipleSelection[i];
-		    		formData.append('userId', rowData.id);
-		    	}
-		    	formData.append('visible', _self.visible);
-		    	
+				let formData = new FormData();
+				for(let i=0; i<this.multipleSelection.length; i++){
+					let rowData = this.multipleSelection[i];
+					formData.append('userId', rowData.id);
+				}
+				formData.append('visible', _self.visible);
+				
 				this.$ajax({
-			        method: 'post',
-			        url: 'control/user/manage?method=delete',
-			        data: formData
+				    method: 'post',
+				    url: 'control/user/manage?method=delete',
+				    data: formData
 				})
 				.then(function (response) {
 					if(response == null){
@@ -250,7 +504,7 @@ export default({
 				  			_self.$store.commit('setCacheNumber');
 				    		_self.queryUserList();
 				    	}else if(returnValue.code === 500){//错误
-				    		
+				    	
 				    		let errorMap = returnValue.data;
 				    		let htmlContent = "";
 				    		let count = 0;
@@ -264,22 +518,20 @@ export default({
 				    			dangerouslyUseHTMLString: true
 				    		})
 				    		.catch(function (error) {
-								console.log(error);
-							});
-				    		
-				    		
+							console.log(error);
+						});
 				    	}
 				    }
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
-	        	
-	        }).catch((error) => {
-	        	//取消选中行
-	        	this.$refs.multipleTable.toggleRowSelection(row,false);
-	        	console.log(error);
-	        });
+				
+			}).catch((error) => {
+				//取消选中行
+				this.$refs.multipleTable.toggleRowSelection(row,false);
+				console.log(error);
+			});
 	    },
 	  	//处理多选
 	    handleSelectionChange: function(val) {
@@ -333,7 +585,7 @@ export default({
 				    		_self.$message.success("还原成功");
 				    		_self.queryUserList();
 				    	}else if(returnValue.code === 500){//错误
-				    		
+				    	
 				    		let errorMap = returnValue.data;
 				    		let htmlContent = "";
 				    		let count = 0;
@@ -342,8 +594,8 @@ export default({
 				    			htmlContent += "<p>"+count + ". " + errorMap[key]+"</p>";
 				    			
 				    	    }
-				    		
-				    		
+				    	
+				    	
 				    		_self.$alert(htmlContent, '错误', {
 				    			showConfirmButton :false,
 				    			dangerouslyUseHTMLString: true
@@ -351,8 +603,6 @@ export default({
 				    		.catch(function (error) {
 								console.log(error);
 							});
-				    		
-				    		
 				    	}
 				    }
 				})
@@ -367,3 +617,33 @@ export default({
 	}
 });
 </script>
+
+<style scoped>
+/* 导入结果样式 */
+.import-result {
+	padding: 10px 0;
+}
+
+.result-summary {
+	margin-bottom: 15px;
+	line-height: 1.8;
+}
+
+/* 验证信息样式 */
+.verify-info {
+	padding: 10px 0;
+	line-height: 1.8;
+}
+
+.text-warning {
+	color: #f56c6c;
+}
+
+.text-danger {
+	color: #e6a23c;
+}
+
+.text-success {
+	color: #67c23a;
+}
+</style>
