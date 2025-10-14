@@ -49,8 +49,13 @@ public class CustomFilterInvocationSecurityMetadataSource implements FilterInvoc
 	@Override
 	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		final HttpServletRequest request = ((FilterInvocation) object).getRequest();
+		
+		// 特别处理用户导入模板路由，允许未认证访问
+		if ("/control/user/import/template".equals(request.getRequestURI())) {
+			return null; // 返回null表示不需要权限验证
+		}
+        
         for (Map.Entry<RequestMatcher, Collection<ConfigAttribute>> entry : requestMap.entrySet()) {
-        	
         	if (entry.getKey().matches(request)) {
                 return entry.getValue();
             }

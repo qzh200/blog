@@ -168,6 +168,12 @@ public class LoginFilter implements Filter {
 		//删除虚拟目录
 		String requestURI = this.deleteContextPath(request.getContextPath(),request.getRequestURI());
 		
+		// 排除不需要权限验证的路径
+		if(requestURI != null && (requestURI.equalsIgnoreCase("control/user/import/template") || requestURI.startsWith("control/user/import/template"))){  
+			chain.doFilter(req, res);
+			return;
+		}
+		
 		boolean isFilter = false;
 		for (AntPathRequestMatcher rm : filterMatchers) {
 			if (rm.matches(request)) { 

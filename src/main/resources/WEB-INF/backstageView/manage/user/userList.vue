@@ -3,7 +3,7 @@
 	<div>
 		<div class="main">
 			<div class="navbar" style="display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; overflow-x: auto;">
-				<el-button type="primary" plain size="small" @click="downloadTemplate">下载模板</el-button>
+				<el-button type="primary" plain size="small" @click="downloadTemplate">下载批量导入模板</el-button>
 				<el-upload
 					class="upload-demo"
 					:action="uploadUrl"

@@ -29,16 +29,16 @@ if [ $? -ne 0 ]; then
     echo "mvn install 失败，请检查错误信息"
     exit 1
 fi
-
+mkdir -p log
 # 使用nohup在后台执行 mvn spring-boot:run 命令
 echo "mvn install 成功，开始启动Spring Boot应用（后台运行）..."
-LOG_FILE="app.log"
+LOG_FILE="log/app.log"
 
 # 检查日志文件是否存在，存在则备份
 if [ -f "$LOG_FILE" ]; then
     TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-    mv "$LOG_FILE" "${LOG_FILE}.${TIMESTAMP}.bak"
-    echo "日志文件已备份为：${LOG_FILE}.${TIMESTAMP}.bak"
+    mv "$LOG_FILE" "log/${LOG_FILE}.${TIMESTAMP}.bak"
+    echo "日志文件已备份为：log/${LOG_FILE}.${TIMESTAMP}.bak"
 fi
 
 # 使用nohup后台运行，并记录进程ID
