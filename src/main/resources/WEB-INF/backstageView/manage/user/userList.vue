@@ -2,12 +2,22 @@
 <template id="userList-template">
 	<div>
 		<div class="main">
-			<div class="navbar">
-				<el-button type="primary" plain size="small" v-if="visible == 'false'" @click="$router.push({path: '/admin/control/user/list', query:{ visible : true}})">返回</el-button>
+			<div class="navbar" style="display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; overflow-x: auto;">
+				<el-button type="primary" plain size="small" @click="downloadTemplate">下载模板</el-button>
+				<el-upload
+					class="upload-demo"
+					:action="uploadUrl"
+					:show-file-list="false"
+					:on-success="handleSuccess">
+					<el-button type="primary" plain size="small">批量导入</el-button>
+				</el-upload>
+				<div style="display: flex; gap: 10px; flex-shrink: 0;">
+					<el-button type="primary" plain size="small" v-if="visible == 'false'" @click="$router.push({path: '/admin/control/user/list', query:{ visible : true}})">返回</el-button>
 				<el-button type="primary" plain size="small" v-if="visible == 'true'" @click="$router.push({path: '/admin/control/user/manage/add', query:{ page:($route.query.page != undefined ? $route.query.page:'')}});">添加会员</el-button>
 				<el-button type="primary" plain size="small" v-if="visible == 'true'" @click="$router.push({path: '/admin/control/user/list', query:{ visible : false}})">回收站</el-button>
 				<el-button type="primary" plain size="small" v-if="visible == 'false'" @click="reductionUser($event)">还原</el-button>
-				<el-button type="primary" plain size="small"  @click="deleteUser($event)">批量删除</el-button>
+					<el-button type="primary" plain size="small"  @click="deleteUser($event)">批量删除</el-button>
+				</div>
 			</div>
 			<div class="data-table" >
 				<el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange" stripe empty-text="没有内容">
@@ -126,6 +136,13 @@ export default({
 		this.queryUserList();
 	},
 	methods : {
+	downloadTemplate() {
+		window.open('/control/user/import/template');
+	},
+	handleSuccess(response) {
+		this.$message.success(response);
+		this.queryUserList();
+	},
 		//查询用户列表
 		queryUserList : function() {
 			let _self = this;
