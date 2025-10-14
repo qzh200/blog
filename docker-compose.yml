@@ -13,6 +13,7 @@ services:
       MYSQL_DATABASE: bbs-pro  # 可选：创建默认数据库
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./bbs-pro.sql:/docker-entrypoint-initdb.d/bbs-pro.sql:ro
     networks:
       - bbs-network
     healthcheck:
