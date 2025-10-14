@@ -97,7 +97,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     	//配置受保护的资源
     	http.authorizeRequests()//资源服务器和认证服务器分离情况下需要配置
     		.antMatchers("/control/**").authenticated() //允许认证的用户进行访问
-    		.antMatchers("/admin/logout").authenticated(); //允许认证的用户进行访问
+    		.antMatchers("/admin/logout").authenticated() //允许认证的用户进行访问
+			.antMatchers("/control/user/import/**").authenticated()//允许认证的用户进行访问
+			.antMatchers("/control/user/export/**").authenticated();//允许认证的用户进行访问
     	http
         	// 关闭httpBasic
     		.httpBasic().disable();

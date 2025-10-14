@@ -67,11 +67,12 @@ public class UserImportController {
             Set<String> usernameSet = new HashSet<>();
             Set<String> mobileSet = new HashSet<>();
             
-            // 先检查导入数据中的重复项
+            // 验证数据有效性并检查重复项
             for (UserData userData : userDataList) {
                 String username = userData.getUsername();
                 String mobile = userData.getMobile();
                 
+                // 检查是否是重复行
                 boolean isRepeat = false;
                 
                 if (usernameSet.contains(username)) {
@@ -84,31 +85,6 @@ public class UserImportController {
                     repeatRows++;
                     continue;
                 }
-                
-                usernameSet.add(username);
-                mobileSet.add(mobile);
-            }
-            
-            // 验证数据有效性
-            for (UserData userData : userDataList) {
-                String username = userData.getUsername();
-                String mobile = userData.getMobile();
-                
-                // 检查是否是重复行
-                boolean isRepeatRow = false;
-                for (UserData checkedData : userDataList) {
-                    if (checkedData == userData) continue;
-                    
-                    String checkedUsername = checkedData.getUsername();
-                    String checkedMobile = checkedData.getMobile();
-                    
-                    if (username.equals(checkedUsername) || (!mobile.isEmpty() && mobile.equals(checkedMobile))) {
-                        isRepeatRow = true;
-                        break;
-                    }
-                }
-                
-                if (isRepeatRow) continue; // 已经算在重复行中
                 
                 // 验证用户名
                 if (StringUtils.isBlank(username) || !Verification.isNumericLettersUnderscore(username) || 
@@ -141,6 +117,9 @@ public class UserImportController {
                     }
                 }
                 
+                // 通过所有验证，添加到有效集合中
+                usernameSet.add(username);
+                mobileSet.add(mobile);
                 validRows++;
             }
             
@@ -258,22 +237,29 @@ public class UserImportController {
     private String getCellValue(Cell cell) {
         if (cell == null) return "";
         
-        switch (cell.getCellType()) {
-            case STRING:
-                return cell.getStringCellValue().trim();
-            case NUMERIC:
-                // 处理数字和日期
-                if (DateUtil.isCellDateFormatted(cell)) {
-                    return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(cell.getDateCellValue());
-                } else {
-                    // 避免科学计数法
-                    return String.valueOf((long) cell.getNumericCellValue());
-                }
-            case BOOLEAN:
-                return String.valueOf(cell.getBooleanCellValue());
-            default:
-                return "";
+        // 确保单元格被视为字符串类型，特别是对于用户名列
+        try {
+            // 使用Apache POI 4.0+的方式设置单元格类型
+            if (cell.getCellType() != CellType.STRING) {
+                cell.setCellType(CellType.STRING);
+            }
+        } catch (Exception e) {
+            // 如果设置单元格类型失败，尝试其他方式获取值
+            switch (cell.getCellType()) {
+                case STRING:
+                    return cell.getStringCellValue().trim();
+                case NUMERIC:
+                    // 对于数字，保留原始格式，不进行类型转换
+                    // 特别是对于手机号等应该作为字符串处理的数据
+                    return cell.toString().trim();
+                case BOOLEAN:
+                    return String.valueOf(cell.getBooleanCellValue());
+                default:
+                    return "";
+            }
         }
+        
+        return cell.getStringCellValue().trim();
     }
     
     private Map<String, Object> validateUserData(UserData userData, int rowNum) {

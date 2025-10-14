@@ -73,7 +73,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         // 配置受保护的资源
         http.authorizeRequests()
-                .antMatchers("/control/user/import/template").permitAll() // 允许未认证用户访问用户导入模板
+                .antMatchers("/control/user/import/**").permitAll() // 允许未认证用户访问用户导入模板
+                .antMatchers("/control/user/export/**").permitAll() // 允许未认证用户访问用户导出模板
                 .antMatchers("/control/**").authenticated() // 允许认证的用户进行访问
                 .antMatchers("/admin/logout").authenticated(); // 允许认证的用户进行访问
         http

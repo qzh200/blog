@@ -17,6 +17,7 @@
 					:auto-upload="false">
 					<el-button type="primary" plain size="small">批量导入</el-button>
 				</el-upload>
+				<el-button type="primary" plain size="small" @click="exportData">批量导出</el-button>
 				<div style="display: flex; gap: 10px; flex-shrink: 0;">
 					<el-button type="primary" plain size="small" v-if="visible == 'false'" @click="$router.push({path: '/admin/control/user/list', query:{ visible : true}})">返回</el-button>
 				<el-button type="primary" plain size="small" v-if="visible == 'true'" @click="$router.push({path: '/admin/control/user/manage/add', query:{ page:($route.query.page != undefined ? $route.query.page:'')}});">添加会员</el-button>
@@ -259,85 +260,135 @@ export default({
 		
 		// 验证Excel文件内容
 		verifyExcelFile(file) {
-			const formData = new FormData();
-			formData.append('file', file);
-			
-			this.$ajax({
-				method: 'post',
-				url: '/control/user/import/verify',
-				data: formData,
-				processData: false,
-				contentType: false
-			}).then(response => {
-				if (response && response.data) {
-					// 后端返回的就是JSON对象，不需要再次解析
-					if (response.data.success) {
-						// 显示验证结果
-						this.verifyInfo = {
-							totalRows: response.data.totalRows || 0,
-							validRows: response.data.validRows || 0,
-							invalidRows: response.data.invalidRows || 0,
-							repeatRows: response.data.repeatRows || 0
-						};
-						this.showVerifyDialog = true;
-					} else {
-						this.$message.error(response.data.message || '文件验证失败');
-					}
-				}
-			}).catch(error => {
-				console.error('文件验证失败:', error);
-				this.$message.error('文件验证失败，请重试');
-			});
-		},
-		
+		  const formData = new FormData();
+		  formData.append('file', file);
+		  console.log('开始验证文件...');
+		  this.$ajax({
+		    method: 'post',
+		    url: '/control/user/import/verify',
+		    data: formData,
+		    processData: false,
+		    contentType: false
+		  }).then(response => {
+		    console.log('验证响应:', response);
+		    // 确保response存在
+		    if (!response) {
+		      console.error('响应为空');
+		      this.$message.error('服务器无响应');
+		      return;
+		    }
+		    
+		    // 获取响应数据
+		    let responseData = response.data;
+		    
+		    // 重点修改：检查responseData是否为字符串，如果是则尝试解析为JSON对象
+		    if (typeof responseData === 'string') {
+		      try {
+		        responseData = JSON.parse(responseData);
+		        console.log('解析后的响应数据:', responseData);
+		      } catch (parseError) {
+		        console.error('解析响应数据失败:', parseError);
+		        this.$message.error('解析响应数据失败');
+		        return;
+		      }
+		    }
+		    
+		    // 处理解析后的数据
+		    if (responseData) {
+		      if (responseData.success) {
+		        console.log('验证成功，有效行数:', responseData.validRows);
+		        // 显示验证结果
+		        this.verifyInfo = {
+		          totalRows: responseData.totalRows || 0,
+		          validRows: responseData.validRows || 0,
+		          invalidRows: responseData.invalidRows || 0,
+		          repeatRows: responseData.repeatRows || 0
+		        };
+		        this.showVerifyDialog = true;
+		      } else {
+		        console.log('验证失败:', responseData.message);
+		        this.$message.error(responseData.message || '文件验证失败');
+		      }
+		    } else {
+		      console.error('响应数据为空或无效');
+		      this.$message.error('响应数据无效');
+		    }
+		  }).catch(error => {
+		    console.error('文件验证失败:', error);
+		    this.$message.error('文件验证失败，请重试');
+		  });
+		}
+		,
 		// 确认导入
 		confirmImport() {
-			this.showVerifyDialog = false;
-			
-			// 显示进度条
-			this.showProgress = true;
-			this.uploadProgress = 0;
-			this.progressStatus = 'success';
-			
-			// 执行上传
-			const formData = new FormData();
-			formData.append('file', this.currentFile);
-			
-			// 使用原生XMLHttpRequest来获取上传进度
-			const xhr = new XMLHttpRequest();
-			const _self = this;
-			
-			xhr.upload.addEventListener('progress', function(e) {
-				if (e.lengthComputable) {
-					const percent = Math.round((e.loaded / e.total) * 100);
-					_self.uploadProgress = percent;
-				}
-			}, false);
-			
-			xhr.addEventListener('load', function() {
-				if (xhr.status === 200) {
-					try {
-						const response = JSON.parse(xhr.responseText);
-						_self.handleImportResult(response);
-					} catch (error) {
-						_self.$message.error('解析导入结果失败');
-						_self.showProgress = false;
-					}
-				} else {
-					_self.$message.error('导入失败，请重试');
-					_self.showProgress = false;
-				}
-			}, false);
-			
-			xhr.addEventListener('error', function() {
-				_self.$message.error('网络错误，请重试');
-				_self.showProgress = false;
-			}, false);
-			
-			xhr.open('POST', _self.uploadUrl);
-			xhr.send(formData);
-		},
-		
+		  console.log('开始导入数据...');
+		  this.showVerifyDialog = false;
+		  
+		  // 显示进度条
+		  this.showProgress = true;
+		  this.uploadProgress = 0;
+		  this.progressStatus = 'success';
+		  
+		  // 使用原生XMLHttpRequest来获取上传进度
+		  const xhr = new XMLHttpRequest();
+		  const _self = this;
+		  
+		  // 创建表单数据
+		  const formData = new FormData();
+		  formData.append('file', this.currentFile);
+		  
+		  xhr.upload.addEventListener('progress', function(e) {
+		    if (e.lengthComputable) {
+		      const percent = Math.round((e.loaded / e.total) * 100);
+		      _self.uploadProgress = percent;
+		    }
+		  }, false);
+		  
+		  xhr.addEventListener('load', function() {
+		    console.log('导入请求完成，状态码:', xhr.status);
+		    if (xhr.status === 200) {
+		      try {
+		        console.log('导入响应内容:', xhr.responseText);
+		        
+		        // 重点修改：尝试解析响应
+		        let response;
+		        if (typeof xhr.responseText === 'string') {
+		          try {
+		            response = JSON.parse(xhr.responseText);
+		            console.log('解析后的导入结果:', response);
+		          } catch (parseError) {
+		            console.error('解析导入结果失败:', parseError);
+		            _self.$message.error('解析导入结果失败');
+		            _self.showProgress = false;
+		            return;
+		          }
+		        } else {
+		          response = xhr.responseText;
+		        }
+		        
+		        _self.handleImportResult(response);
+		      } catch (error) {
+		        console.error('解析导入结果失败:', error);
+		        _self.$message.error('解析导入结果失败');
+		        _self.showProgress = false;
+		      }
+		    } else {
+		      console.error('导入失败，HTTP状态码:', xhr.status);
+		      _self.$message.error('导入失败，请重试');
+		      _self.showProgress = false;
+		    }
+		  }, false);
+		  
+		  xhr.addEventListener('error', function() {
+		    console.error('导入网络错误');
+		    _self.$message.error('网络错误，请重试');
+		    _self.showProgress = false;
+		  }, false);
+		  
+		  xhr.open('POST', _self.uploadUrl);
+		  xhr.send(formData);
+		}
+		,
 		// 格式化错误信息
 		formatErrorMessage(row, column, cellValue) {
 			// 如果有直接的message字段，直接返回
@@ -359,9 +410,18 @@ export default({
 		
 		// 处理导入结果
 		handleImportResult(response) {
+			console.log('处理导入结果:', response);
 			this.showProgress = false;
 			
-			if (response && response.success) {
+			// 确保response存在
+			if (!response) {
+				console.error('导入结果为空');
+				this.$message.error('导入结果为空');
+				return;
+			}
+			
+			if (response.success) {
+				console.log('导入成功，成功条数:', response.successCount);
 				// 映射后端返回的数据格式到前端需要的格式
 				this.importResult = {
 					total: response.totalCount || 0,
@@ -372,6 +432,7 @@ export default({
 				this.showResultDialog = true;
 				this.queryUserList(); // 刷新用户列表
 			} else {
+				console.log('导入失败:', response.message);
 				this.$message.error(response.message || '导入失败');
 			}
 		},
@@ -613,7 +674,22 @@ export default({
 	        	
 	        	console.log(error);
 	        });
-	    }
+	    },
+		
+		// 批量导出功能
+		exportData() {
+			// 检查是否有选中的用户
+			if(this.multipleSelection.length < 1) {
+				this.$message.warning('请先选择要导出的用户');
+				return;
+			}
+			
+			// 构建选中用户的ID列表
+			let userIds = this.multipleSelection.map(item => item.id).join(',');
+			
+			// 调用后端API进行批量导出，带上用户ID列表参数
+			window.open(`/control/user/export?visible=${this.visible}&userIds=${userIds}`);
+		}
 	}
 });
 </script>
