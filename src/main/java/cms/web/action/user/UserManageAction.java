@@ -113,26 +113,6 @@ public class UserManageAction {
 	@Resource(name = "userValidator") 
 	private Validator validator; 
 	@Resource UserManage userManage;
-
-@Resource ExcelImportManage excelImportManage;
-
-/**
- * 用户批量导入
- */
-@ResponseBody
-@RequestMapping(params="method=batchImport", method=RequestMethod.POST)
-public String batchImport(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-    Map<String, Object> result = new HashMap<>();
-    try {
-        List<User> users = excelImportManage.parseUserExcel(file.getInputStream());
-        userService.batchInsertUsers(users);
-        result.put("success", true);
-    } catch (Exception e) {
-        logger.error("批量导入用户失败", e);
-        result.put("error", "文件格式错误或数据异常");
-    }
-    return JsonUtils.toJSONString(result);
-}
 	
 	@Resource UserGradeService userGradeService;
 	
