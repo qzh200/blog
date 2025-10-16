@@ -18,10 +18,7 @@ import org.springframework.stereotype.Component;
 @Component("captchaManage")
 public class CaptchaManage {
 	@Resource TemplateService templateService;
-	@Resource CaptchaManage captchaManage;
-	
 	@Resource SettingManage settingManage;
-	
 	@Resource SettingService settingService;
 	/**---------------------------------- 验证码 ---------------------------------------**/
 	/**

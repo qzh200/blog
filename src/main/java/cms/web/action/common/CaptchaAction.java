@@ -79,16 +79,23 @@ public class CaptchaAction {
             captchaManage.captcha_delete(captchaKey.trim());
             //根据key生成验证码
             captchaManage.captcha_generate(captchaKey.trim(),capText);
+            
             //创建带有文本的图像
-            BufferedImage bi = captchaProducer.createImage(capText);   
-            ServletOutputStream out = response.getOutputStream();   
-            //输出数据  
-            ImageIO.write(bi, "jpg", out);   
-            try {   
-                out.flush();   
-            } finally {   
-                out.close();   
-            } 
+            if(captchaProducer != null) {
+                BufferedImage bi = captchaProducer.createImage(capText);   
+                ServletOutputStream out = response.getOutputStream();   
+                //输出数据  
+                ImageIO.write(bi, "jpg", out);   
+                try {   
+                    out.flush();   
+                } finally {   
+                    out.close();   
+                }
+            } else {
+                //如果captchaProducer为null，输出一个简单的错误响应
+                response.setContentType("text/plain");
+                response.getWriter().write("验证码服务暂时不可用");
+            }
         }
     
         
