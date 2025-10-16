@@ -260,6 +260,8 @@ export default({
 		
 		// 验证Excel文件内容
 		verifyExcelFile(file) {
+			// 提示用户Excel文件的列顺序和必填项
+			this.$message.info('请确保Excel文件格式正确：昵称(必填)、等级(默认0)、Email地址(默认空)、预存款(默认0)、积分(默认0)、备注(默认无)、角色(默认无)');
 		  const formData = new FormData();
 		  formData.append('file', file);
 		  console.log('开始验证文件...');
