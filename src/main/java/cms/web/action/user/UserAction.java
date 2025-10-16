@@ -460,16 +460,14 @@ public class UserAction {
 						pageView.setQueryResult(qr);
 					}
 				}else if(userTypeCode.equals(20)){//呢称
-					User user = userService.findUserByNickname(keyword.trim());
+					// 使用findUserByCondition方法查询所有具有相同昵称的用户
+					String param = " o.state<=? and o.nickname=? ";
+					List<Object> paramValue = new ArrayList<Object>();
+					paramValue.add(2); // 状态条件
+					paramValue.add(keyword.trim()); // 昵称条件
 					
-					if(user != null){
-						QueryResult<User> qr = new QueryResult<User>();
-						List<User> userList = new ArrayList<User>();
-						userList.add(user);
-						qr.setResultlist(userList);
-						qr.setTotalrecord(1L);
-						pageView.setQueryResult(qr);
-					}
+					QueryResult<User> qr = userService.findUserByCondition(param, paramValue, firstIndex, pageView.getMaxresult(), false);
+					pageView.setQueryResult(qr);
 				}else if(userTypeCode.equals(30)){//用户名
 					User user = userService.findUserByUserName(keyword.trim());
 					
