@@ -84,11 +84,11 @@
             <heap unit="entries">1</heap>
         </resources>
     </cache>
-    <!-- 开放授权管理 - 刷新令牌 2592000为30天  -->	
+    <!-- 开放授权管理 - 刷新令牌 86400为1天，与oauth2.properties中的refreshTokenValiditySeconds保持一致  -->
     <cache alias="oAuthManage_cache_refreshToken" uses-template="template">
         <expiry>
             <!-- 通过ttl指定了cache过期时间,java.wechatutil.concurrent.TimeUnit中的属性，单位/秒 -->
-            <ttl unit="seconds">2592000</ttl>
+            <ttl unit="seconds">86400</ttl>
         </expiry>
         <resources>
             <heap unit="entries">99999999</heap>
@@ -104,11 +104,11 @@
             <heap unit="entries">99999999</heap>
         </resources>
     </cache>
-	<!-- 开放授权管理 - 第三方用户的唯一标识 过期时间必须和'oAuthManage_cache_refreshToken'一致 -->	
+	<!-- 开放授权管理 - 第三方用户的唯一标识 过期时间必须和'oAuthManage_cache_refreshToken'一致 -->
     <cache alias="oAuthManage_cache_openId" uses-template="template">
         <expiry>
             <!-- 通过ttl指定了cache过期时间,java.wechatutil.concurrent.TimeUnit中的属性，单位/秒 -->
-            <ttl unit="seconds">2592000</ttl>
+            <ttl unit="seconds">86400</ttl>
         </expiry>
         <resources>
             <heap unit="entries">99999999</heap>
