@@ -24,6 +24,8 @@ hs_err_pid*
 
 # IDE files
 .idea/
+# vs code files
+.vscode/
 
 # Build directories
 target/
