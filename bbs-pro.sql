@@ -2303,7 +2303,6 @@ CREATE TABLE `topicfavorite_0`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `topicFavorite_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-----------------------------
 
 -- ----------------------------
 -- Table structure for topicfavorite_1
@@ -2395,7 +2394,6 @@ CREATE TABLE `topiclike_1`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `topicLike_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
 
 
 -- ----------------------------
