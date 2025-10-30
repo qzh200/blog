@@ -116,7 +116,7 @@ export default({
 		    	
 				this.$ajax({
 			        method: 'post',
-			        uurl: 'control/filePackage/manage?method=delete&a=a',//a=a参数的作用是仅增加连接符&
+			        url: 'control/filePackage/manage?method=delete&a=a',//a=a参数的作用是仅增加连接符&
 			        data: formData
 				})
 				.then(function (response) {
@@ -124,8 +124,24 @@ export default({
 						return;
 					}
 				    let result = response.data;
+				    
+				    // 检查响应是否为HTML错误页面
+				    if (typeof result === 'string' && result.includes('<!DOCTYPE')) {
+				    	_self.$message.error("服务器返回错误，请检查网络连接或联系管理员");
+				    	console.error("服务器返回HTML页面而非JSON:", result.substring(0, 200));
+				    	return;
+				    }
+				    
 				    if(result){
-				    	let returnValue = JSON.parse(result);
+				    	let returnValue;
+				    	try {
+				    		returnValue = JSON.parse(result);
+				    	} catch (e) {
+				    		_self.$message.error("服务器返回数据格式错误");
+				    		console.error("JSON解析错误:", e, "原始数据:", result);
+				    		return;
+				    	}
+				    	
 				    	if(returnValue.code === 200){//成功
 				    		_self.$message.success("删除成功");
 				    		_self.queryFilePackageList();

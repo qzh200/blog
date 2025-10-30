@@ -177,6 +177,11 @@ export default({
 			    	if(returnValue.code === 200){//成功
 			    		_self.$message.success("提交成功,正在异步打包");
 			    		
+			    		// 设置3秒后跳转到文件列表页面
+			    		setTimeout(() => {
+			    			_self.$router.push({path: '/admin/control/filePackage/list'});
+			    		}, 3000);
+			    		
 			    	}else if(returnValue.code === 500){//错误
 			    		
 			    		let errorMap = returnValue.data;
