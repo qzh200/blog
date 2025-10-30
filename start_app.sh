@@ -1,5 +1,8 @@
-﻿#!/bin/bash
-# 打印执行信息
+﻿# 打印执行信息
+# 创建文件存储目录
+mkdir -p /data/bbs/file/topic
+chmod -R 755 /data/bbs
+
 echo "开始构建项目..."
 # 清理旧的docker容器
 echo "开始清理旧的docker容器..."
