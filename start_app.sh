@@ -1,28 +1,26 @@
 ﻿#!/bin/bash
 # 打印执行信息
 echo "开始构建项目..."
+# 清理旧的docker容器
+echo "开始清理旧的docker容器..."
+docker-compose down
+
+# 部署mysql
+echo "开始部署mysql..."
+docker-compose up -d
+
 
 # 查找并终止正在运行的Spring Boot进程
 echo "检查是否有正在运行的Spring Boot进程..."
-# 兼容Windows环境的进程查找方式
-if command -v tasklist &> /dev/null; then
-    # Windows环境
-    SPRING_PID=$(tasklist | findstr "java" | findstr "spring-boot" | awk '{print $2}')
-else
-    # Unix/Linux环境
-    SPRING_PID=$(ps aux | grep 'spring-boot' | grep -v grep | awk '{print $2}')
-fi
+
+# Unix/Linux环境
+SPRING_PID=$(ps aux | grep 'spring-boot' | grep -v grep | awk '{print $2}')
 
 if [ ! -z "$SPRING_PID" ]; then
     echo "发现正在运行的Spring Boot进程: $SPRING_PID"
     echo "正在终止进程..."
-    if command -v taskkill &> /dev/null; then
-        # Windows环境
-        taskkill /PID $SPRING_PID /F
-    else
         # Unix/Linux环境
         kill -9 $SPRING_PID
-    fi
     if [ $? -eq 0 ]; then
         echo "进程已成功终止"
     else
