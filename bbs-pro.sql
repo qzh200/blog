@@ -3,15 +3,15 @@
 
  Source Server         : localhost_33066
  Source Server Type    : MySQL
- Source Server Version : 90400 (9.4.0)
+ Source Server Version : 80044 (8.0.44)
  Source Host           : localhost:33066
  Source Schema         : bbs-pro
 
  Target Server Type    : MySQL
- Target Server Version : 90400 (9.4.0)
+ Target Server Version : 80044 (8.0.44)
  File Encoding         : 65001
 
- Date: 13/10/2025 19:19:28
+ Date: 30/10/2025 22:29:17
 */
 
 SET NAMES utf8mb4;
@@ -31,6 +31,9 @@ CREATE TABLE `aiinterface`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of aiinterface
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answer
@@ -54,6 +57,9 @@ CREATE TABLE `answer`  (
   INDEX `answer_2_idx`(`userName` ASC, `isStaff` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answer
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerlike_0
@@ -72,6 +78,10 @@ CREATE TABLE `answerlike_0`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of answerlike_0
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for answerlike_1
 -- ----------------------------
 DROP TABLE IF EXISTS `answerlike_1`;
@@ -87,6 +97,9 @@ CREATE TABLE `answerlike_1`  (
   INDEX `answerLike_1_idx`(`answerId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerlike_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerlike_2
@@ -104,6 +117,9 @@ CREATE TABLE `answerlike_2`  (
   INDEX `answerLike_1_idx`(`answerId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerlike_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerlike_3
@@ -121,6 +137,9 @@ CREATE TABLE `answerlike_3`  (
   INDEX `answerLike_1_idx`(`answerId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerlike_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerreply
@@ -147,6 +166,9 @@ CREATE TABLE `answerreply`  (
   INDEX `answerReply_3_idx`(`userName` ASC, `isStaff` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerreply
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerreplylike_0
@@ -164,6 +186,9 @@ CREATE TABLE `answerreplylike_0`  (
   INDEX `answerReply_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerreplylike_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerreplylike_1
@@ -181,6 +206,9 @@ CREATE TABLE `answerreplylike_1`  (
   INDEX `answerReplyLike_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerreplylike_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerreplylike_2
@@ -198,6 +226,9 @@ CREATE TABLE `answerreplylike_2`  (
   INDEX `answerReplyLike_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerreplylike_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for answerreplylike_3
@@ -215,6 +246,9 @@ CREATE TABLE `answerreplylike_3`  (
   INDEX `answerReplyLike_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of answerreplylike_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for comment
@@ -239,8 +273,11 @@ CREATE TABLE `comment`  (
   INDEX `comment_1_idx`(`topicId` ASC, `status` ASC) USING BTREE,
   INDEX `comment_2_idx`(`quoteIdGroup` ASC) USING BTREE,
   INDEX `comment_3_idx`(`userName` ASC, `isStaff` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of comment
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentlike_0
@@ -258,6 +295,9 @@ CREATE TABLE `commentlike_0`  (
   INDEX `commentLike_1_idx`(`commentId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentlike_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentlike_1
@@ -275,6 +315,9 @@ CREATE TABLE `commentlike_1`  (
   INDEX `commentLike_1_idx`(`commentId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentlike_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentlike_2
@@ -292,6 +335,9 @@ CREATE TABLE `commentlike_2`  (
   INDEX `commentLike_1_idx`(`commentId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentlike_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentlike_3
@@ -309,6 +355,9 @@ CREATE TABLE `commentlike_3`  (
   INDEX `commentLike_1_idx`(`commentId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentlike_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentreplylike_0
@@ -326,6 +375,9 @@ CREATE TABLE `commentreplylike_0`  (
   INDEX `commentReply_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentreplylike_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentreplylike_1
@@ -343,6 +395,9 @@ CREATE TABLE `commentreplylike_1`  (
   INDEX `commentReplyLike_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentreplylike_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentreplylike_2
@@ -360,6 +415,9 @@ CREATE TABLE `commentreplylike_2`  (
   INDEX `commentReplyLike_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of commentreplylike_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for commentreplylike_3
@@ -377,26 +435,9 @@ CREATE TABLE `commentreplylike_3`  (
   INDEX `commentReplyLike_1_idx`(`replyId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
 -- ----------------------------
--- Table structure for customreply
+-- Records of commentreplylike_3
 -- ----------------------------
-DROP TABLE IF EXISTS `customreply`;
-CREATE TABLE `customreply`  (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `customCommentId` bigint NULL DEFAULT NULL,
-  `customItemId` bigint NULL DEFAULT NULL,
-  `ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `staff` bit(1) NOT NULL,
-  `times` datetime NULL DEFAULT NULL,
-  `userName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `customReply_1_idx`(`customCommentId` ASC) USING BTREE,
-  INDEX `customReply_2_idx`(`customItemId` ASC) USING BTREE,
-  INDEX `customReply_3_idx`(`userName` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
 
 -- ----------------------------
 -- Table structure for disableusername
@@ -406,8 +447,11 @@ CREATE TABLE `disableusername`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of disableusername
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for emailsetting
@@ -425,6 +469,9 @@ CREATE TABLE `emailsetting`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of emailsetting
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for favorites_0
@@ -442,6 +489,9 @@ CREATE TABLE `favorites_0`  (
   INDEX `favorites_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of favorites_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for favorites_1
@@ -459,6 +509,9 @@ CREATE TABLE `favorites_1`  (
   INDEX `favorites_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of favorites_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for favorites_2
@@ -477,6 +530,10 @@ CREATE TABLE `favorites_2`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of favorites_2
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for favorites_3
 -- ----------------------------
 DROP TABLE IF EXISTS `favorites_3`;
@@ -492,6 +549,9 @@ CREATE TABLE `favorites_3`  (
   INDEX `favorites_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of favorites_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for feedback
@@ -508,6 +568,9 @@ CREATE TABLE `feedback`  (
   INDEX `feedback_1_idx`(`createDate` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of feedback
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follow_0
@@ -522,6 +585,9 @@ CREATE TABLE `follow_0`  (
   INDEX `follow_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follow_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follow_1
@@ -536,6 +602,9 @@ CREATE TABLE `follow_1`  (
   INDEX `follow_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follow_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follow_2
@@ -550,6 +619,9 @@ CREATE TABLE `follow_2`  (
   INDEX `follow_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follow_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follow_3
@@ -564,6 +636,9 @@ CREATE TABLE `follow_3`  (
   INDEX `follow_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follow_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follower_0
@@ -578,6 +653,9 @@ CREATE TABLE `follower_0`  (
   INDEX `follower_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follower_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follower_1
@@ -592,6 +670,9 @@ CREATE TABLE `follower_1`  (
   INDEX `follower_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follower_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follower_2
@@ -606,6 +687,9 @@ CREATE TABLE `follower_2`  (
   INDEX `follower_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follower_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for follower_3
@@ -620,6 +704,9 @@ CREATE TABLE `follower_3`  (
   INDEX `follower_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of follower_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for forum
@@ -641,8 +728,11 @@ CREATE TABLE `forum`  (
   `queryMode` int NULL DEFAULT NULL,
   `referenceCode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 146 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of forum
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for giveredenvelope
@@ -668,6 +758,9 @@ CREATE TABLE `giveredenvelope`  (
   INDEX `giveRedEnvelope_2_idx`(`userId` ASC, `giveTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of giveredenvelope
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for help
@@ -687,6 +780,9 @@ CREATE TABLE `help`  (
   INDEX `help_idx`(`helpTypeId` ASC, `visible` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of help
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for helptype
@@ -709,6 +805,9 @@ CREATE TABLE `helptype`  (
   INDEX `helpType_2_idx`(`parentIdGroup` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of helptype
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for layout
@@ -728,6 +827,9 @@ CREATE TABLE `layout`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of layout
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for like_0
@@ -749,6 +851,9 @@ CREATE TABLE `like_0`  (
   INDEX `like_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of like_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for like_1
@@ -770,6 +875,9 @@ CREATE TABLE `like_1`  (
   INDEX `like_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of like_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for like_2
@@ -791,6 +899,9 @@ CREATE TABLE `like_2`  (
   INDEX `like_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of like_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for like_3
@@ -812,6 +923,9 @@ CREATE TABLE `like_3`  (
   INDEX `like_1_idx`(`userName` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of like_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for links
@@ -827,6 +941,9 @@ CREATE TABLE `links`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of links
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for mediaprocessqueue
@@ -848,6 +965,9 @@ CREATE TABLE `mediaprocessqueue`  (
   INDEX `mediaProcessQueue_2_idx`(`fileName` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of mediaprocessqueue
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for mediaprocesssetting
@@ -868,6 +988,9 @@ CREATE TABLE `mediaprocesssetting`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of mediaprocesssetting
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for membershipcard
@@ -892,6 +1015,10 @@ CREATE TABLE `membershipcard`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of membershipcard
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for membershipcardgiftitem_0
 -- ----------------------------
 DROP TABLE IF EXISTS `membershipcardgiftitem_0`;
@@ -908,6 +1035,9 @@ CREATE TABLE `membershipcardgiftitem_0`  (
   INDEX `membershipCardGiftItem_idx`(`membershipCardGiftTaskId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of membershipcardgiftitem_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for membershipcardgiftitem_1
@@ -926,6 +1056,9 @@ CREATE TABLE `membershipcardgiftitem_1`  (
   INDEX `membershipCardGiftItem_idx`(`membershipCardGiftTaskId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of membershipcardgiftitem_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for membershipcardgiftitem_2
@@ -944,6 +1077,9 @@ CREATE TABLE `membershipcardgiftitem_2`  (
   INDEX `membershipCardGiftItem_idx`(`membershipCardGiftTaskId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of membershipcardgiftitem_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for membershipcardgiftitem_3
@@ -962,6 +1098,9 @@ CREATE TABLE `membershipcardgiftitem_3`  (
   INDEX `membershipCardGiftItem_idx`(`membershipCardGiftTaskId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of membershipcardgiftitem_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for membershipcardgifttask
@@ -985,6 +1124,9 @@ CREATE TABLE `membershipcardgifttask`  (
   INDEX `membershipCardGiftTask_1_idx`(`expirationDate_start` ASC, `expirationDate_end` ASC, `type` ASC, `enable` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of membershipcardgifttask
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for membershipcardorder
@@ -1011,6 +1153,9 @@ CREATE TABLE `membershipcardorder`  (
   INDEX `membershipCardOrder_1_idx`(`userName` ASC, `createDate` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of membershipcardorder
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for onlinepaymentinterface
@@ -1028,6 +1173,9 @@ CREATE TABLE `onlinepaymentinterface`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of onlinepaymentinterface
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for paymentlog_0
@@ -1050,6 +1198,9 @@ CREATE TABLE `paymentlog_0`  (
   INDEX `paymentlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of paymentlog_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for paymentlog_1
@@ -1072,6 +1223,9 @@ CREATE TABLE `paymentlog_1`  (
   INDEX `paymentlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of paymentlog_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for paymentlog_2
@@ -1094,6 +1248,9 @@ CREATE TABLE `paymentlog_2`  (
   INDEX `paymentlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of paymentlog_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for paymentlog_3
@@ -1116,6 +1273,9 @@ CREATE TABLE `paymentlog_3`  (
   INDEX `paymentlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of paymentlog_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for paymentverificationlog
@@ -1132,6 +1292,9 @@ CREATE TABLE `paymentverificationlog`  (
   INDEX `userName_idx`(`parameterId` ASC, `userName` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of paymentverificationlog
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pointlog_0
@@ -1152,6 +1315,9 @@ CREATE TABLE `pointlog_0`  (
   INDEX `pointlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of pointlog_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pointlog_1
@@ -1172,6 +1338,9 @@ CREATE TABLE `pointlog_1`  (
   INDEX `pointlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of pointlog_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pointlog_2
@@ -1192,6 +1361,9 @@ CREATE TABLE `pointlog_2`  (
   INDEX `pointlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of pointlog_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pointlog_3
@@ -1212,6 +1384,9 @@ CREATE TABLE `pointlog_3`  (
   INDEX `pointlog_idx`(`userName` ASC, `times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of pointlog_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for privatemessage_0
@@ -1232,6 +1407,9 @@ CREATE TABLE `privatemessage_0`  (
   INDEX `privateMessage_2_idx`(`userId` ASC, `friendUserId` ASC, `status` ASC, `sendTimeFormat` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of privatemessage_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for privatemessage_1
@@ -1252,6 +1430,9 @@ CREATE TABLE `privatemessage_1`  (
   INDEX `privateMessage_2_idx`(`userId` ASC, `friendUserId` ASC, `status` ASC, `sendTimeFormat` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of privatemessage_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for privatemessage_2
@@ -1272,6 +1453,9 @@ CREATE TABLE `privatemessage_2`  (
   INDEX `privateMessage_2_idx`(`userId` ASC, `friendUserId` ASC, `status` ASC, `sendTimeFormat` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of privatemessage_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for privatemessage_3
@@ -1292,6 +1476,9 @@ CREATE TABLE `privatemessage_3`  (
   INDEX `privateMessage_2_idx`(`userId` ASC, `friendUserId` ASC, `status` ASC, `sendTimeFormat` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of privatemessage_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for pv
@@ -1310,6 +1497,9 @@ CREATE TABLE `pv`  (
   INDEX `pv_1_idx`(`times` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of pv
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for question
@@ -1346,6 +1536,9 @@ CREATE TABLE `question`  (
   INDEX `question_7_idx`(`amount` ASC, `status` ASC, `sort` ASC, `lastAnswerTime` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of question
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionfavorite_0
@@ -1363,6 +1556,10 @@ CREATE TABLE `questionfavorite_0`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of questionfavorite_0
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for questionfavorite_1
 -- ----------------------------
 DROP TABLE IF EXISTS `questionfavorite_1`;
@@ -1377,6 +1574,9 @@ CREATE TABLE `questionfavorite_1`  (
   INDEX `questionFavorite_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionfavorite_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionfavorite_2
@@ -1393,6 +1593,9 @@ CREATE TABLE `questionfavorite_2`  (
   INDEX `questionFavorite_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionfavorite_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionfavorite_3
@@ -1409,6 +1612,9 @@ CREATE TABLE `questionfavorite_3`  (
   INDEX `questionFavorite_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionfavorite_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionindex
@@ -1419,8 +1625,11 @@ CREATE TABLE `questionindex`  (
   `dataId` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `indexState` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionindex
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionlike_0
@@ -1437,6 +1646,9 @@ CREATE TABLE `questionlike_0`  (
   INDEX `question_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionlike_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionlike_1
@@ -1453,6 +1665,9 @@ CREATE TABLE `questionlike_1`  (
   INDEX `questionLike_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionlike_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionlike_2
@@ -1469,6 +1684,9 @@ CREATE TABLE `questionlike_2`  (
   INDEX `questionLike_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionlike_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionlike_3
@@ -1485,6 +1703,9 @@ CREATE TABLE `questionlike_3`  (
   INDEX `questionLike_1_idx`(`questionId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionlike_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questionrewardplatformshare
@@ -1506,6 +1727,9 @@ CREATE TABLE `questionrewardplatformshare`  (
   INDEX `questionRewardPlatformShare_2_idx`(`questionId` ASC, `answerUserName` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questionrewardplatformshare
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questiontag
@@ -1524,6 +1748,9 @@ CREATE TABLE `questiontag`  (
   INDEX `questionTag_1_idx`(`sort` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questiontag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for questiontagassociation
@@ -1539,6 +1766,9 @@ CREATE TABLE `questiontagassociation`  (
   INDEX `questionTagAssociation_2_idx`(`questionTagId` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of questiontagassociation
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for receiveredenvelope_0
@@ -1556,6 +1786,9 @@ CREATE TABLE `receiveredenvelope_0`  (
   INDEX `receiveRedEnvelope_1_idx`(`receiveUserId` ASC, `receiveTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of receiveredenvelope_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for receiveredenvelope_1
@@ -1573,6 +1806,9 @@ CREATE TABLE `receiveredenvelope_1`  (
   INDEX `receiveRedEnvelope_1_idx`(`receiveUserId` ASC, `receiveTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of receiveredenvelope_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for receiveredenvelope_2
@@ -1590,6 +1826,9 @@ CREATE TABLE `receiveredenvelope_2`  (
   INDEX `receiveRedEnvelope_1_idx`(`receiveUserId` ASC, `receiveTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of receiveredenvelope_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for receiveredenvelope_3
@@ -1607,6 +1846,9 @@ CREATE TABLE `receiveredenvelope_3`  (
   INDEX `receiveRedEnvelope_1_idx`(`receiveUserId` ASC, `receiveTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of receiveredenvelope_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for remind_0
@@ -1637,6 +1879,9 @@ CREATE TABLE `remind_0`  (
   INDEX `remind_4_idx`(`questionId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of remind_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for remind_1
@@ -1667,6 +1912,9 @@ CREATE TABLE `remind_1`  (
   INDEX `remind_4_idx`(`questionId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of remind_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for remind_2
@@ -1697,6 +1945,9 @@ CREATE TABLE `remind_2`  (
   INDEX `remind_4_idx`(`questionId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of remind_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for remind_3
@@ -1727,6 +1978,9 @@ CREATE TABLE `remind_3`  (
   INDEX `remind_4_idx`(`questionId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of remind_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for reply
@@ -1751,8 +2005,11 @@ CREATE TABLE `reply`  (
   INDEX `reply_1_idx`(`commentId` ASC, `status` ASC) USING BTREE,
   INDEX `reply_2_idx`(`topicId` ASC) USING BTREE,
   INDEX `reply_3_idx`(`userName` ASC, `isStaff` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of reply
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for report
@@ -1781,6 +2038,9 @@ CREATE TABLE `report`  (
   INDEX `report_3_idx`(`parameterId` ASC, `userName` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of report
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for reporttype
@@ -1798,6 +2058,9 @@ CREATE TABLE `reporttype`  (
   INDEX `reportType_1_idx`(`sort` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of reporttype
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sendsmslog
@@ -1815,6 +2078,9 @@ CREATE TABLE `sendsmslog`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of sendsmslog
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for smsinterface
@@ -1832,6 +2098,9 @@ CREATE TABLE `smsinterface`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of smsinterface
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for specification
@@ -1854,6 +2123,9 @@ CREATE TABLE `specification`  (
   INDEX `specification_1_idx`(`membershipCardId` ASC, `sort` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of specification
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for staffloginlog_0
@@ -1868,6 +2140,9 @@ CREATE TABLE `staffloginlog_0`  (
   INDEX `staffLoginLog_idx`(`staffId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of staffloginlog_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for staffloginlog_1
@@ -1882,6 +2157,9 @@ CREATE TABLE `staffloginlog_1`  (
   INDEX `staffLoginLog_idx`(`staffId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of staffloginlog_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for staffloginlog_2
@@ -1896,6 +2174,9 @@ CREATE TABLE `staffloginlog_2`  (
   INDEX `staffLoginLog_idx`(`staffId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of staffloginlog_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for staffloginlog_3
@@ -1910,6 +2191,9 @@ CREATE TABLE `staffloginlog_3`  (
   INDEX `staffLoginLog_idx`(`staffId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of staffloginlog_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for subscriptionsystemnotify_0
@@ -1927,6 +2211,9 @@ CREATE TABLE `subscriptionsystemnotify_0`  (
   INDEX `subscriptionSystemNotify_2_idx`(`userId` ASC, `status` ASC, `systemNotifyId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of subscriptionsystemnotify_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for subscriptionsystemnotify_1
@@ -1944,6 +2231,9 @@ CREATE TABLE `subscriptionsystemnotify_1`  (
   INDEX `subscriptionSystemNotify_2_idx`(`userId` ASC, `status` ASC, `systemNotifyId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of subscriptionsystemnotify_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for subscriptionsystemnotify_2
@@ -1961,6 +2251,9 @@ CREATE TABLE `subscriptionsystemnotify_2`  (
   INDEX `subscriptionSystemNotify_2_idx`(`userId` ASC, `status` ASC, `systemNotifyId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of subscriptionsystemnotify_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for subscriptionsystemnotify_3
@@ -1978,6 +2271,9 @@ CREATE TABLE `subscriptionsystemnotify_3`  (
   INDEX `subscriptionSystemNotify_2_idx`(`userId` ASC, `status` ASC, `systemNotifyId` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of subscriptionsystemnotify_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for syspermission
@@ -1992,6 +2288,9 @@ CREATE TABLE `syspermission`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of syspermission
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for syspermissionresources
@@ -2002,8 +2301,11 @@ CREATE TABLE `syspermissionresources`  (
   `permissionId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `resourceId` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1558 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of syspermissionresources
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sysresources
@@ -2021,6 +2323,9 @@ CREATE TABLE `sysresources`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of sysresources
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sysroles
@@ -2033,6 +2338,9 @@ CREATE TABLE `sysroles`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of sysroles
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sysrolespermission
@@ -2045,6 +2353,9 @@ CREATE TABLE `sysrolespermission`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of sysrolespermission
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for systemnotify
@@ -2058,6 +2369,10 @@ CREATE TABLE `systemnotify`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `systemNotify_1_idx`(`sendTime` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of systemnotify
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for systemsetting
@@ -2140,6 +2455,10 @@ CREATE TABLE `systemsetting`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of systemsetting
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sysusers
 -- ----------------------------
 DROP TABLE IF EXISTS `sysusers`;
@@ -2159,6 +2478,10 @@ CREATE TABLE `sysusers`  (
   UNIQUE INDEX `UKi13uxat3wa9pt2glvqr05g7rn`(`userAccount` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of sysusers
+-- ----------------------------
+INSERT INTO `sysusers` VALUES ('42ea45e889e94e31820eec3c2b3f3dd5', NULL, b'1', 'admin', b'1', NULL, '30f539fb6f3b4fdda7d18023d7215ce0', 'admin', NULL, '管理员', '$2a$10$H5OnTy57/HxG8UXlmOUaBOLs5NL5tr/2y3hLpl5Q/9q0UE6Ej7RPG');
 
 -- ----------------------------
 -- Table structure for sysusersroles
@@ -2170,6 +2493,10 @@ CREATE TABLE `sysusersroles`  (
   `userAccount` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sysusersroles
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tag
@@ -2188,6 +2515,9 @@ CREATE TABLE `tag`  (
   INDEX `tag_1_idx`(`sort` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of tag
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for templates
@@ -2203,8 +2533,11 @@ CREATE TABLE `templates`  (
   `uses` bit(1) NOT NULL,
   `verifyCSRF` bit(1) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of templates
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for thirdpartylogininterface
@@ -2222,6 +2555,9 @@ CREATE TABLE `thirdpartylogininterface`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of thirdpartylogininterface
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for thumbnail
@@ -2235,22 +2571,11 @@ CREATE TABLE `thumbnail`  (
   `width` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `UKi1c51f71y0grwc0d7wyoe5mig`(`specificationGroup` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for timetask
+-- Records of thumbnail
 -- ----------------------------
-DROP TABLE IF EXISTS `timetask`;
-CREATE TABLE `timetask`  (
-  `id` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `cron` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `misfireInstruction` int NULL DEFAULT NULL,
-  `performType` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  `remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
 
 -- ----------------------------
 -- Table structure for topic
@@ -2286,8 +2611,11 @@ CREATE TABLE `topic`  (
   INDEX `topic_5_idx`(`status` ASC, `sort` ASC, `lastReplyTime` ASC) USING BTREE,
   INDEX `topic_6_idx`(`weight` ASC) USING BTREE,
   INDEX `topic_7_idx`(`tagIdGroup` ASC, `status` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topic
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicfavorite_0
@@ -2305,6 +2633,10 @@ CREATE TABLE `topicfavorite_0`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of topicfavorite_0
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for topicfavorite_1
 -- ----------------------------
 DROP TABLE IF EXISTS `topicfavorite_1`;
@@ -2319,6 +2651,9 @@ CREATE TABLE `topicfavorite_1`  (
   INDEX `topicFavorite_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topicfavorite_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicfavorite_2
@@ -2335,6 +2670,9 @@ CREATE TABLE `topicfavorite_2`  (
   INDEX `topicFavorite_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topicfavorite_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicfavorite_3
@@ -2351,6 +2689,9 @@ CREATE TABLE `topicfavorite_3`  (
   INDEX `topicFavorite_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topicfavorite_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicindex
@@ -2361,8 +2702,11 @@ CREATE TABLE `topicindex`  (
   `dataId` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `indexState` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topicindex
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topiclike_0
@@ -2379,6 +2723,9 @@ CREATE TABLE `topiclike_0`  (
   INDEX `topicLike_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topiclike_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topiclike_1
@@ -2395,6 +2742,9 @@ CREATE TABLE `topiclike_1`  (
   INDEX `topicLike_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topiclike_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topiclike_2
@@ -2411,6 +2761,9 @@ CREATE TABLE `topiclike_2`  (
   INDEX `topicLike_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topiclike_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topiclike_3
@@ -2427,7 +2780,9 @@ CREATE TABLE `topiclike_3`  (
   INDEX `topicLike_1_idx`(`topicId` ASC, `addtime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
+-- ----------------------------
+-- Records of topiclike_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicunhide_0
@@ -2446,6 +2801,9 @@ CREATE TABLE `topicunhide_0`  (
   INDEX `topicUnhide_1_idx`(`topicId` ASC, `cancelTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of topicunhide_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicunhide_1
@@ -2464,7 +2822,9 @@ CREATE TABLE `topicunhide_1`  (
   INDEX `topicunhide_1_idx`(`topicId` ASC, `cancelTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
+-- ----------------------------
+-- Records of topicunhide_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicunhide_2
@@ -2483,7 +2843,9 @@ CREATE TABLE `topicunhide_2`  (
   INDEX `topicunhide_1_idx`(`topicId` ASC, `cancelTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
+-- ----------------------------
+-- Records of topicunhide_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicunhide_3
@@ -2502,7 +2864,9 @@ CREATE TABLE `topicunhide_3`  (
   INDEX `topicunhide_1_idx`(`topicId` ASC, `cancelTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
+-- ----------------------------
+-- Records of topicunhide_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for topicunhideplatformshare
@@ -2523,7 +2887,9 @@ CREATE TABLE `topicunhideplatformshare`  (
   INDEX `topicUnhidePlatformShare_1_idx`(`unlockTime` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
+-- ----------------------------
+-- Records of topicunhideplatformshare
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for upgradesystem
@@ -2547,7 +2913,9 @@ CREATE TABLE `upgradesystem`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
-
+-- ----------------------------
+-- Records of upgradesystem
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for user
@@ -2585,8 +2953,11 @@ CREATE TABLE `user`  (
   INDEX `user_3_idx`(`nickname` ASC) USING BTREE,
   INDEX `user_4_idx`(`mobile` ASC) USING BTREE,
   INDEX `user_5_idx`(`email` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of user
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for usercustom
@@ -2613,6 +2984,9 @@ CREATE TABLE `usercustom`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of usercustom
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userdynamic_0
@@ -2637,6 +3011,9 @@ CREATE TABLE `userdynamic_0`  (
   INDEX `userDynamic_5_idx`(`functionIdGroup` ASC, `userName` ASC, `module` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userdynamic_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userdynamic_1
@@ -2661,6 +3038,9 @@ CREATE TABLE `userdynamic_1`  (
   INDEX `userDynamic_5_idx`(`functionIdGroup` ASC, `userName` ASC, `module` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userdynamic_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userdynamic_2
@@ -2686,6 +3066,10 @@ CREATE TABLE `userdynamic_2`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
+-- Records of userdynamic_2
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for userdynamic_3
 -- ----------------------------
 DROP TABLE IF EXISTS `userdynamic_3`;
@@ -2708,6 +3092,9 @@ CREATE TABLE `userdynamic_3`  (
   INDEX `userDynamic_5_idx`(`functionIdGroup` ASC, `userName` ASC, `module` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userdynamic_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for usergrade
@@ -2720,6 +3107,9 @@ CREATE TABLE `usergrade`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of usergrade
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userinputvalue
@@ -2735,6 +3125,9 @@ CREATE TABLE `userinputvalue`  (
   INDEX `userinputvalue_idx`(`userId` ASC, `options` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userinputvalue
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userloginlog_0
@@ -2750,6 +3143,9 @@ CREATE TABLE `userloginlog_0`  (
   INDEX `userLoginLog_idx`(`userId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userloginlog_0
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userloginlog_1
@@ -2765,6 +3161,9 @@ CREATE TABLE `userloginlog_1`  (
   INDEX `userLoginLog_idx`(`userId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userloginlog_1
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userloginlog_2
@@ -2780,6 +3179,9 @@ CREATE TABLE `userloginlog_2`  (
   INDEX `userLoginLog_idx`(`userId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userloginlog_2
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userloginlog_3
@@ -2795,6 +3197,9 @@ CREATE TABLE `userloginlog_3`  (
   INDEX `userLoginLog_idx`(`userId` ASC, `logonTime` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userloginlog_3
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userrole
@@ -2811,6 +3216,9 @@ CREATE TABLE `userrole`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userrole
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for userrolegroup
@@ -2826,5 +3234,8 @@ CREATE TABLE `userrolegroup`  (
   INDEX `userRoleGroup_3_idx`(`userRoleId` ASC, `userName` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
+-- ----------------------------
+-- Records of userrolegroup
+-- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
