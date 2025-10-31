@@ -26,7 +26,7 @@ services:
       - "33066:3306"
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456  # 请根据需要修改密码
+      MYSQL_ROOT_PASSWORD: Q5EC6VV7Zs # 请根据需要修改密码
       MYSQL_DATABASE: bbs-pro  # 可选：创建默认数据库
     volumes:
       - mysql-data:/var/lib/mysql
