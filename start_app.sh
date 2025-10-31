@@ -11,7 +11,20 @@ docker-compose down
 # 部署mysql
 echo "开始部署mysql..."
 docker-compose up -d
-
+# 打包前端项目
+echo "开始打包前端项目..."
+cd bbs-web-admin
+npm install
+npm run build
+cd ..
+cd bbs-web-pc
+npm install
+npm run build
+cd ..
+cd bbs-web-mobile
+npm install
+npm run build
+cd ..
 
 # 查找并终止正在运行的Spring Boot进程
 echo "检查是否有正在运行的Spring Boot进程..."
