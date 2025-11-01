@@ -417,8 +417,6 @@ const verifyExcelFile = (file: File) => {
       method: "post",
       url: "/control/user/import/verify",
       data: formData,
-      processData: false,
-      contentType: false,
     })
     .then((response: AxiosResponse) => {
       if (!response) {

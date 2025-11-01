@@ -1,4 +1,5 @@
-﻿# 打印执行信息
+﻿#!/bin/bash
+# 打印执行信息
 # 创建文件存储目录
 mkdir -p /data/bbs/file/topic
 chmod -R 755 /data/bbs

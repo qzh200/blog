@@ -7,10 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBadge: typeof import('element-plus/es')['ElBadge']
+    ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
+    ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
@@ -29,6 +30,7 @@ declare module '@vue/runtime-core' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImage: typeof import('element-plus/es')['ElImage']
+    ElImageViewer: typeof import('element-plus/es')['ElImageViewer']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElLink: typeof import('element-plus/es')['ElLink']
@@ -42,7 +44,6 @@ declare module '@vue/runtime-core' {
     ElRadio: typeof import('element-plus/es')['ElRadio']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
-    ElResult: typeof import('element-plus/es')['ElResult']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
