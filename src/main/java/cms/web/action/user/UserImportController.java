@@ -452,14 +452,14 @@ public class UserImportController {
             user.setSecurityDigest(System.currentTimeMillis());
             
             // 生成盐值和密码（默认密码为123456）
-            String defaultPassword = "123456";
+            String defaultPassword = "1234567";
             String salt = UUIDUtil.getUUID32();
             user.setSalt(salt);
             user.setPassword(SHA.sha256Hex(SHA.sha256Hex(defaultPassword) + "[" + salt + "]"));
             
             // 设置默认的密码提示问题和答案
-            user.setIssue("默认密码是123456");
-            user.setAnswer(SHA.sha256Hex(SHA.sha256Hex("123456")));
+            user.setIssue("默认密码是1234567");
+            user.setAnswer(SHA.sha256Hex(SHA.sha256Hex("1234567")));
             
             // 设置平台用户ID
             user.setPlatformUserId(userData.getUsername());
