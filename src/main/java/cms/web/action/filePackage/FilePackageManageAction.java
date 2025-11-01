@@ -117,6 +117,7 @@ public class FilePackageManageAction {
 	 * 打包
 	 * @param model
 	 * @param id 选中Id
+	 * @param exportDatabase 是否导出数据库
 	 * @param request
 	 * @param response
 	 * @return
@@ -124,7 +125,7 @@ public class FilePackageManageAction {
 	 */
 	@ResponseBody
 	@RequestMapping(params="method=package",method=RequestMethod.POST)
-	public String packages(ModelMap model,String[] idGroup,
+	public String packages(ModelMap model,String[] idGroup, String exportDatabase,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		Map<String,String> error = new HashMap<String,String>();//错误
@@ -163,12 +164,19 @@ public class FilePackageManageAction {
 			    	}
 			    }  	
 			}	
-		}else{
+		}
+		
+		// 检查是否至少选择了文件或导出数据库
+		boolean hasFiles = compressList.size() > 0;
+		boolean hasDatabase = "true".equalsIgnoreCase(exportDatabase);
+		
+		if(!hasFiles && !hasDatabase){
 			error.put("package", "未选择目录或文件");
 		}
+		
 		if(error.size() ==0){
 			//打包
-			filePackageManage.filePack(compressList);
+			filePackageManage.filePack(compressList, hasDatabase);
 		}
 		
 
