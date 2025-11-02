@@ -51,7 +51,8 @@
     const previewSquare = ref<HTMLElement>()//预览方框
     const previewRound = ref<HTMLElement>()//预览圆框
     const selectImage = ref<UploadInstance>()//选择图片
-    const fileList = ref<UploadUserFile[]>()//图片列表
+    // 图片列表：初始化为空数组，避免未选择时为 undefined 导致判断失效
+    const fileList = ref<UploadUserFile[]>([])//图片列表
 
     //传递消息给父组件
     const emit = defineEmits(['updateAvatar'])
@@ -90,14 +91,17 @@
     
 
     //处理上传图片
-    const handleChange = (file:any, fileList:any) => {
-        if (fileList.length > 1) {
-            fileList.splice(0, 1);
+    const handleChange = (changedFile:any, changedFileList:any) => {
+        // 仅保留最后一次选择的图片
+        if (changedFileList.length > 1) {
+            changedFileList.splice(0, changedFileList.length - 1);
         }
-        
-        var reader = new FileReader();
+        // 同步到绑定的 ref，确保后续上传时能读取到文件
+        fileList.value = changedFileList;
+
+        const reader = new FileReader();
         //readAsDataURL方法可以将File对象转化为data:URL格式的字符串（base64编码）
-        reader.readAsDataURL(file.raw);
+        reader.readAsDataURL(changedFile.raw);
         reader.onload = (e)=>{
             let dataURL:any = reader.result;
             if(dataURL){
@@ -133,8 +137,17 @@
             return;
         }
 
-        if(fileList.value != null && fileList.value.length >0){
-            formData.append('imgFile', fileList.value[0].raw!);
+        if(fileList.value != null && fileList.value.length > 0 && fileList.value[0].raw){
+            formData.append('imgFile', fileList.value[0].raw as File);
+        } else {
+            ElMessage({
+                showClose: true,
+                message: t('updateAvatar.40'),//请选择图片
+                type: 'error',
+                onClose: ()=>{}
+            })
+            form.allowSubmit = false;
+            return;
         }
 
         // - x裁切框距离左边的距离 
@@ -156,6 +169,7 @@
             url: '/user/control/updateAvatar',
             method: 'post',
             data: formData,
+            headers: { 'Content-Type': 'multipart/form-data' },
             timeout: 0,// 定义请求超时时间
             onUploadProgress: (progressEvent:any) => {
                 if (progressEvent.lengthComputable) {
