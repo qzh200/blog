@@ -45,7 +45,7 @@
 
     const originalImage = ref<HTMLImageElement>()//原图
     const selectImage =  ref<UploaderInstance>()//选择图片
-    const fileList = ref<UploaderFileListItem[]>()//图片列表
+    const fileList = ref<UploaderFileListItem[]>([])//图片列表
 
     //传递消息给父组件
     const emit = defineEmits(['updateAvatar'])
