@@ -98,7 +98,7 @@ spring:
 #内嵌Tomcat配置   
 server:
   #服务端口
-  port: 8080
+  port: 8085
   servlet:
     encoding:
       charset: UTF-8 #HTTP请求和响应的字符集。如果未显式设置，则添加到“Content-Type”头
