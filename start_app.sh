@@ -34,7 +34,7 @@ while true; do
                 -v "$(pwd)/bbs-web-admin:/app" \
                 -w /app \
                 --network bbs-build-network \
-                node:22-alpine \
+                node:22.18.0-alpine \
                 sh -c "npm config set registry https://registry.npmmirror.com/ && npm install && NODE_OPTIONS='--max-old-space-size=4096' npm run build"
             if [ $? -eq 0 ]; then
                 echo "管理端项目打包成功"
@@ -49,7 +49,7 @@ while true; do
                 -v "$(pwd)/bbs-web-pc:/app" \
                 -w /app \
                 --network bbs-build-network \
-                node:22-alpine \
+                node:22.18.0-alpine \
                 sh -c "npm config set registry https://registry.npmmirror.com/ && npm install && NODE_OPTIONS='--max-old-space-size=4096' npm run build"
             if [ $? -eq 0 ]; then
                 echo "PC端项目打包成功"
@@ -64,7 +64,7 @@ while true; do
                 -v "$(pwd)/bbs-web-mobile:/app" \
                 -w /app \
                 --network bbs-build-network \
-                node:22-alpine \
+                node:22.18.0-alpine \
                 sh -c "npm config set registry https://registry.npmmirror.com/ && npm install && NODE_OPTIONS='--max-old-space-size=4096' npm run build"
             if [ $? -eq 0 ]; then
                 echo "移动端项目打包成功"
