@@ -9,12 +9,6 @@
                 <el-table-column type="selection" v-if="false"></el-table-column>
                 <el-table-column prop="name" label="名称" align="center"></el-table-column>
                 <el-table-column prop="createDate" label="创建时间" align="center" width="160"></el-table-column>
-                <el-table-column label="销售价" align="center" width="180">
-                    <template #default="scope">
-                        <span v-if="scope.row.lowestPrice == scope.row.highestPrice">{{scope.row.lowestPrice}}</span>
-                        <span v-if="scope.row.lowestPrice != scope.row.highestPrice">{{scope.row.lowestPrice}} - {{scope.row.highestPrice}}</span>
-                    </template>
-                </el-table-column>
                 <el-table-column label="积分" align="center" width="180">
                     <template #default="scope">
                         <span v-if="scope.row.lowestPoint == scope.row.highestPoint">{{scope.row.lowestPoint}}</span>

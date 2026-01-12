@@ -23,10 +23,7 @@
             <el-button type="primary" plain v-if="verifyPermissionMenu('/control/follow/list*','get')" @click="$router.push({path: '/admin/control/follow/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">关注</el-button>
             <el-button type="primary" plain v-if="verifyPermissionMenu('/control/follower/list*','get')" @click="$router.push({path: '/admin/control/follower/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">粉丝</el-button>
             <el-button type="primary" plain v-if="verifyPermissionMenu('/control/membershipCard/manage?method=membershipCardOrderList*','get')" @click="$router.push({path: '/admin/control/membershipCard/manage/membershipCardOrderList', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">会员卡订单</el-button>
-            <el-button type="primary" plain v-if="verifyPermissionMenu('/control/redEnvelope/giveRedEnvelope/list*','get')" @click="$router.push({path: '/admin/control/redEnvelope/giveRedEnvelope/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">发红包</el-button>
-            <el-button type="primary" plain v-if="verifyPermissionMenu('/control/redEnvelope/receiveRedEnvelope/list*','get')" @click="$router.push({path: '/admin/control/redEnvelope/receiveRedEnvelope/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">收红包</el-button>	
             <el-button type="primary" plain v-if="verifyPermissionMenu('/control/pointLog/list*','get')" @click="$router.push({path: '/admin/control/pointLog/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">积分日志</el-button>
-            <el-button type="primary" plain v-if="verifyPermissionMenu('/control/paymentLog/list*','get')" @click="$router.push({path: '/admin/control/paymentLog/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">支付日志</el-button>
             
             <el-button type="primary" plain v-if="verifyPermissionMenu('/control/user/manage?method=payment&*','post')" @click="rechargeUI()">充值</el-button>
             <el-button type="primary" plain v-if="verifyPermissionMenu('/control/userReport/list*','get')" @click="$router.push({path: '/admin/control/userReport/list', query:{ id : $route.query.id,userName : encodeURIComponent(state.user.userName),beforeUrl:($route.query.beforeUrl != undefined ? $route.query.beforeUrl:'')}})">举报</el-button>
@@ -46,48 +43,9 @@
                     <el-form label-width="130px"  @submit.native.prevent>
                         <el-form-item label="充值方式">
                             <el-radio-group v-model="state.mode" size="large">
-                                <el-radio-button :label="1">支付流水号充值</el-radio-button>
-                                <el-radio-button :label="2">增减预存款</el-radio-button>
                                 <el-radio-button :label="3">增减积分</el-radio-button>
                             </el-radio-group>
                         </el-form-item>
-                        
-                        <el-form-item label="流水号支付金额" :required="true" :error="error.paymentRunningNumberAmount" v-if="state.mode==1">
-                            <el-col :span="10">
-                                <el-input v-model.trim="state.paymentRunningNumberAmount" maxlength="10" :clearable="true" show-word-limit></el-input>
-                            </el-col>
-                        </el-form-item>
-                        <el-form-item label="流水号" :required="true" :error="error.paymentRunningNumber" v-if="state.mode==1">
-                            <el-row :gutter="10">
-                                <el-col :span="22">
-                                    <el-input v-model.trim="state.paymentRunningNumber" maxlength="40" :clearable="true" show-word-limit></el-input>
-                                </el-col>
-                                <el-col :span="2">
-                                    <el-button :icon="Search" size="large" @click="paymentVerificationLogUI">流水号</el-button>
-                                </el-col>
-                            </el-row>
-                            <div class="form-help" >流水号有效期为发起支付7天内</div>
-                        </el-form-item>
-                        <el-form-item label="备注" v-if="state.mode==1">
-                            <el-input v-model="state.paymentRunningNumber_remark" type="textarea" :autosize="{ minRows: 2, maxRows: 4}" ></el-input>
-                        </el-form-item>
-                        
-                        <el-form-item label="预存款" :required="true" :error="error.deposit" v-if="state.mode==2">
-                            <el-row>
-                                <el-col :span="8">
-                                    <el-select size="large" v-model="state.deposit_symbol" style="width: 100px;">
-                                        <el-option v-for="item in state.deposit_symbol_options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-                                    </el-select>
-                                </el-col>
-                                <el-col :span="12">
-                                    <el-input v-model.trim="state.deposit" maxlength="10" :clearable="true" show-word-limit></el-input>
-                                </el-col>
-                            </el-row>
-                        </el-form-item>
-                        <el-form-item label="备注" v-if="state.mode==2">
-                            <el-input v-model="state.deposit_remark" type="textarea" :autosize="{ minRows: 2, maxRows: 4}" ></el-input>
-                        </el-form-item>
-                        
                         <el-form-item label="积分" :required="true" :error="error.point" v-if="state.mode==3">
                             <el-row>
                                 <el-col :span="8">
@@ -228,10 +186,6 @@
                         <span v-if="state.user.state == 12">停用时删除</span>
                     </div>
                 </el-col>
-            </el-row>
-            <el-row :gutter="10" type="flex">
-                <el-col :span="4"><div class="name">预存款：</div></el-col>
-                <el-col :span="20"><div class="content">{{state.user.deposit}}</div></el-col>
             </el-row>
             <el-row :gutter="10" type="flex">
                 <el-col :span="4"><div class="name">积分：</div></el-col>
@@ -386,7 +340,7 @@ export default {
 
     const state = reactive({
         popup_recharge:false,//是否弹出充值窗口
-        mode:2,//充值方式
+        mode:3,//充值方式
         paymentRunningNumberAmount:'',//支付流水号充值--支付金额
         paymentRunningNumber:'',//支付流水号充值--流水号
         paymentRunningNumber_remark:'',//支付流水号充值--备注

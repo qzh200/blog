@@ -21,77 +21,6 @@
                             <van-popup v-model:show="form.showTagPicker" round position="bottom">
                                <van-picker :columns="form.options" @cancel="form.showTagPicker = false" :columns-field-names="{text: 'label'}" :loading="form.loading" :item-height="convertViewportWidth('44px')" :show-toolbar="false" @change="onTagChange"/>
                             </van-popup>
-                            <!-- label="红包" -->
-                            <van-field is-link readonly :label="t('addTopic.60')" v-if="form.showRedEnvelopeText" :class="form.showRedEnvelopeForm ? 'redEnvelope-arrow-down':'redEnvelope-arrow-right'" @click="redEnvelopeForm">
-                                <template #input>
-                                    
-                                </template>
-                            </van-field>
-
-
-                            <div v-if="form.showRedEnvelopeForm">
-                                <!-- label="红包类型" -->
-                                <van-field :label="t('addTopic.70')">
-                                    <template #input>
-                                        <van-radio-group v-model="form.giveRedEnvelope_type" direction="horizontal" @change="selectRedEnvelopeType()">
-                                            <van-radio :name="20">{{t('addTopic.80')}}</van-radio><!-- 随机金额红包 -->
-                                            <van-radio :name="30">{{t('addTopic.90')}}</van-radio><!-- 固定金额红包 -->
-                                        </van-radio-group>
-                                    </template>
-                                </van-field>
-
-                                <div class="van-cell cell-field"  v-if="form.giveRedEnvelope_type == 20">
-                                    <div class="van-cell__title van-field__label cell-field-title">
-                                        <span>{{t('addTopic.100')}}</span><!--红包总金额 -->
-                                    </div>
-                                    <div class="van-cell__value">
-                                        <span>
-                                            <!-- placeholder="输入金额" -->
-                                            <van-field v-model.trim="form.giveRedEnvelope_totalAmount" :placeholder="t('addTopic.110')" @input="totalAmountCalculate()" maxlength="12" class="cell-field-value" :formatter="amountFormat" clearable :error-message="error.totalAmount"/>
-                                        </span>
-                                    </div>
-                                    <div class="van-cell__label cell-field-label">
-                                        <span class="help-text">
-                                            <!-- 合计总金额不能少于 {{form.giveRedEnvelopeAmountMin}} 元； -->
-                                            <span v-if="parseFloat(form.giveRedEnvelopeAmountMin) >0">{{t('addTopic.120',{'p1': form.giveRedEnvelopeAmountMin})}}</span>	
-                                            <!-- 合计总金额不能超过 {{form.giveRedEnvelopeAmountMax}} 元； -->
-                                            <span v-if="form.giveRedEnvelopeAmountMax != null && parseFloat(form.giveRedEnvelopeAmountMax) >0">{{t('addTopic.130',{'p1': form.giveRedEnvelopeAmountMax})}}</span>	
-                                            <!-- 用户共有金额 {{form.deposit}} 元 -->
-                                            <span>{{t('addTopic.140',{'p1': form.deposit})}}</span>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class="van-cell cell-field"  v-if="form.giveRedEnvelope_type == 30">
-                                    <div class="van-cell__title van-field__label cell-field-title">
-                                        <span>{{t('addTopic.150')}}</span> <!-- 单个红包金额 -->
-                                    </div>
-                                    <div class="van-cell__value">
-                                        <span>
-                                            <!-- placeholder="输入金额" -->
-                                            <van-field v-model.trim="form.giveRedEnvelope_singleAmount" :placeholder="t('addTopic.110')" @input="singleAmountCalculate()" maxlength="12"  class="cell-field-value" :formatter="amountFormat" clearable :error-message="error.singleAmount"/>
-                                        </span>
-                                    </div>
-                                    <div class="van-cell__label cell-field-label">
-                                        <span class="help-text">
-                                            <!-- 合计总金额不能少于 {{form.giveRedEnvelopeAmountMin}} 元； -->
-                                            <span v-if="parseFloat(form.giveRedEnvelopeAmountMin) >0">{{t('addTopic.120',{'p1': form.giveRedEnvelopeAmountMin})}}</span>	
-                                            <!-- 合计总金额不能超过 {{form.giveRedEnvelopeAmountMax}} 元；-->
-                                            <span v-if="form.giveRedEnvelopeAmountMax != null && parseFloat(form.giveRedEnvelopeAmountMax) >0">{{t('addTopic.130',{'p1': form.giveRedEnvelopeAmountMax})}}</span>	
-                                            <!-- 用户共有金额 {{form.deposit}} 元 -->
-                                            <span>{{t('addTopic.140',{'p1': form.deposit})}}</span>
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- label="红包数量" placeholder="输入数量" -->
-                                <van-field v-model.trim="form.giveRedEnvelope_giveQuantity" type="digit" :label="t('addTopic.160')" :placeholder="t('addTopic.170')" @input="singleAmountCalculate()" maxlength="8" clearable :error-message="error.giveQuantity"/>
-                                <!-- label="合计总金额" -->
-                                <van-field :label="t('addTopic.180')" center :error-message="error.redEnvelopeLimit" class="lastItem">
-                                    <template #input>
-                                        {{form.giveRedEnvelope_totalAmountView}}
-                                    </template>
-                                </van-field>
-                            </div>
 
                             <!-- label="发起投票" -->
                             <van-field is-link readonly :label="t('addTopic.270')" v-if="form.isVoteView" :class="form.isVote ? 'redEnvelope-arrow-down':'redEnvelope-arrow-right'" @click="voteForm">
@@ -897,9 +826,8 @@
 								editorIconList.push("hideGrade");
 							}else if(_availableTag == "hidePoint"){//积分购买可见
 								editorIconList.push("hidePoint");
-							}else if(_availableTag == "hideAmount"){//余额购买可见
-								editorIconList.push("hideAmount");
-							}else if(_availableTag == "mention"){//提及
+							}
+							else if(_availableTag == "mention"){//提及
 								editorIconList.push("mention");
 							}else if(_availableTag == "ai"){//AI
 								editorIconList.push("ai");

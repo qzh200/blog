@@ -38,18 +38,6 @@
                             </el-tooltip>
                         </el-col>
                     </el-row>
-                    <el-form-item :error="error.amount" v-if="form.questionRewardAmountMax == null || (form.questionRewardAmountMax != null && parseFloat(form.questionRewardAmountMax) >0)">
-                        <!--悬赏金额-->
-                        <el-input v-model.trim="form.amount" :placeholder="t('addQuestion.30')" maxlength="10" clearable style="width: 150px;margin-right:10px;"></el-input>
-                        <span class="help-text">
-                            <!--悬赏金额不能少于 {p1} 元；-->
-                            <span v-if="parseFloat(form.questionRewardAmountMin) >0">{{t('addQuestion.40',{'p1': form.questionRewardAmountMin})}}</span>	
-                            <!--悬赏金额不能超过 {p1} 元；-->
-                            <span v-if="form.questionRewardAmountMax != null && parseFloat(form.questionRewardAmountMax) >0">{{t('addQuestion.50',{'p1': form.questionRewardAmountMax})}}</span>	
-                            <!--用户共有金额 {p1} 元-->
-                            <span>{{t('addQuestion.60',{'p1': form.maxDeposit})}}</span>
-                        </span>
-                    </el-form-item>
                     <el-form-item :error="error.point" v-if="form.questionRewardPointMax == null || (form.questionRewardPointMax != null && parseInt(form.questionRewardPointMax) >0)">
                         <!--悬赏积分-->
                         <el-input v-model.trim="form.point" :placeholder="t('addQuestion.70')" maxlength="9" clearable style="width: 150px;margin-right:10px;"></el-input>

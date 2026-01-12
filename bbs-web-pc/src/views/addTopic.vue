@@ -31,68 +31,6 @@
                         </el-col>
                     </el-row>
 
-                    <!--红包-->
-                    <el-form-item :label="t('addTopic.40')" v-if="form.showRedEnvelopeText" >
-                        <el-switch v-model="form.showRedEnvelopeForm" @click="selectRedEnvelopeType"></el-switch>
-                    </el-form-item>
-                    <div v-if="form.showRedEnvelopeForm">
-                        <el-form-item>
-                            <el-radio-group v-model="form.giveRedEnvelope_type" @change="selectRedEnvelopeType()">
-                                <el-radio :label="20">{{t('addTopic.50')}}</el-radio><!--随机金额红包-->
-                                <el-radio :label="30">{{t('addTopic.60')}}</el-radio><!--固定金额红包-->
-                            </el-radio-group>
-                        </el-form-item>
-                        <!--红包总金额 placeholder="输入金额" -->
-                        <el-form-item :error="error.totalAmount" v-if="form.giveRedEnvelope_type == 20">
-                            <!-- 红包总金额 <el-input v-model.trim="form.giveRedEnvelope_totalAmount" :placeholder="i18n.t('addTopic.80')" maxlength="12" @input="totalAmountCalculate()" clearable style="width: 150px;margin-left:10px;margin-right:10px;"></el-input>元 -->
-                            <span class="form-text">
-                                <i18n-t keypath="addTopic.70" scope="global">
-                                    <template #p1>
-                                        <el-input v-model.trim="form.giveRedEnvelope_totalAmount" :placeholder="t('addTopic.80')" maxlength="12" @input="totalAmountCalculate()" clearable style="width: 150px;margin-left:10px;margin-right:10px;"></el-input>
-                                    </template>
-                                </i18n-t>
-                            </span>
-                            <span class="help-text">
-                                <!--合计总金额不能少于 {p1} 元； -->
-                                <span v-if="parseFloat(form.giveRedEnvelopeAmountMin) >0">{{t('addTopic.90',{'p1': form.giveRedEnvelopeAmountMin})}}</span>	
-								<!--合计总金额不能超过 {p1} 元； -->
-                                <span v-if="form.giveRedEnvelopeAmountMax != null && parseFloat(form.giveRedEnvelopeAmountMax) >0">{{t('addTopic.100',{'p1': form.giveRedEnvelopeAmountMax})}}</span>	
-								<!--用户共有金额 {p1} 元-->
-                                <span>{{t('addTopic.110',{'p1': form.deposit})}}</span>
-                            </span>
-                        </el-form-item>
-                        <el-form-item :error="error.singleAmount" v-if="form.giveRedEnvelope_type == 30">
-                            <!--单个红包金额 <el-input v-model.trim="form.giveRedEnvelope_singleAmount" placeholder="输入金额" maxlength="12" @input="singleAmountCalculate()" clearable style="width: 150px;margin-left:10px;margin-right:10px;"></el-input>元-->
-                            <span class="form-text">
-                                <i18n-t keypath="addTopic.120" scope="global">
-                                    <template #p1>
-                                        <el-input v-model.trim="form.giveRedEnvelope_singleAmount" :placeholder="t('addTopic.80')" maxlength="12" @input="singleAmountCalculate()" clearable style="width: 150px;margin-left:10px;margin-right:10px;"></el-input>
-                                    </template>
-                                </i18n-t>
-                            </span>
-                            <span class="help-text">
-                                <!--合计总金额不能少于 {p1} 元；-->
-                                <span v-if="parseFloat(form.giveRedEnvelopeAmountMin) >0">{{t('addTopic.90',{'p1': form.giveRedEnvelopeAmountMin})}}</span>	
-								<!--合计总金额不能超过 {p1} 元；-->
-                                <span v-if="form.giveRedEnvelopeAmountMax != null && parseFloat(form.giveRedEnvelopeAmountMax) >0">{{t('addTopic.100',{'p1': form.giveRedEnvelopeAmountMax})}}</span>	
-								<!--用户共有金额 {p1} 元-->
-                                <span>{{t('addTopic.110',{'p1': form.deposit})}}</span>
-                            </span>
-                        </el-form-item>
-                        <el-form-item :error="error.giveQuantity">
-                            <!--<el-input v-model.trim="form.giveRedEnvelope_giveQuantity" placeholder="输入数量" maxlength="8" @input="singleAmountCalculate()" clearable style="width: 100px;margin-right:10px;"></el-input>个红包-->
-                            <i18n-t keypath="addTopic.180" scope="global">
-                                <template #p1>
-                                    <el-input v-model.trim="form.giveRedEnvelope_giveQuantity" :placeholder="t('addTopic.170')" maxlength="8" @input="singleAmountCalculate()" clearable style="width: 100px;margin-right:10px;"></el-input>
-                                </template>
-                            </i18n-t>
-                        </el-form-item>
-                        <el-form-item :error="error.redEnvelopeLimit">
-                            <!--合计总金额-->
-                            {{t('addTopic.190')}}<span class="totalAmountView">{{form.giveRedEnvelope_totalAmountView}}</span>
-                        </el-form-item>
-                    </div>
-
                     <!--发起投票-->
                     <el-form-item :label="t('addTopic.280')" v-if="form.isVoteView">
                         <el-switch v-model="form.isVote" ></el-switch>

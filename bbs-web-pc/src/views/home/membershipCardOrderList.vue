@@ -13,8 +13,6 @@
                     <el-table-column prop="orderId" :label="t('membershipCardOrderList.10')" align="center"/>
                     <!-- label="创建时间" -->
                     <el-table-column prop="createDate" :label="t('membershipCardOrderList.20')"  width="170" align="center"/>
-                    <!-- label="已支付金额" -->
-                    <el-table-column prop="paymentAmount" :label="t('membershipCardOrderList.30')"  width="130" align="center"/>
                     <!-- label="已支付积分" -->
                     <el-table-column prop="paymentPoint" :label="t('membershipCardOrderList.40')"  width="130" align="center"/>
                     <!-- label="角色名称" -->

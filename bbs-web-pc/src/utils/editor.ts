@@ -75,14 +75,6 @@ import "../../public/common/default/pc/js/kindeditor/kindeditor-min.js";// 富�
 			"margin-top: -30px;"+
 			"line-height: 30px;"+
 		"}"+
-		".ke-content .inputValue_50:before {"+
-			"content: '需要支付 ¥' attr(input-value) ' 元费用可见';"+
-			" color: #409eff;"+
-			"font-size:14px;"+
-			"position: absolute;"+
-			"margin-top: -30px;"+
-			"line-height: 30px;"+
-		"}"+//突出编辑框的代码
 		".ke-content .prettyprint {"+
 			"min-height:20px;"+
 			"background:#f7f8fa;"+

@@ -163,25 +163,9 @@
                                 <Icon name="order" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>
                                 <span class="van-grid-item__text">{{t('home.220')}}</span><!-- 会员卡订单 -->
                             </van-grid-item>
-                            <van-grid-item to="/user/control/balance">
-                                <Icon name="deposit" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>
-                                <span class="van-grid-item__text">{{t('home.230')}}</span><!-- 余额 -->
-                            </van-grid-item>
-                            <van-grid-item to="/user/control/giveRedEnvelopeList">
-                                <Icon name="redEnvelope-2" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>
-                                <span class="van-grid-item__text">{{t('home.240')}}</span><!-- 发红包 -->
-                            </van-grid-item>
-                            <van-grid-item to="/user/control/receiveRedEnvelopeList">
-                                <Icon name="redEnvelope-2" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>
-                                <span class="van-grid-item__text">{{t('home.250')}}</span><!-- 收红包 -->
-                            </van-grid-item>
                             <van-grid-item to="/user/control/editUser">
                                 <Icon name="pencil-alt" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>
                                 <span class="van-grid-item__text">{{t('home.260')}}</span><!-- 修改账户 -->
-                            </van-grid-item>
-                            <van-grid-item to="/user/control/realNameAuthentication">
-                                <Icon name="realNameAuthentication" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>
-                                <span class="van-grid-item__text">{{t('home.270')}}</span><!-- 绑定手机 -->
                             </van-grid-item>
                             <van-grid-item to="/user/control/reportList">
                                 <Icon name="error-warning-line" :size="convertViewportWidth('26px')" class="van-badge__wrapper van-icon van-grid-item__icon"/>

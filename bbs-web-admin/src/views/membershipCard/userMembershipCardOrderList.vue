@@ -8,7 +8,6 @@
             <el-table ref="multipleTable" :data="state.tableData" tooltip-effect="dark" style="width: 100%" stripe empty-text="没有内容">
                 <el-table-column prop="orderId" label="订单号" align="center" width="170"></el-table-column>
                 <el-table-column prop="createDate" label="创建时间" align="center" width="170"></el-table-column>
-                <el-table-column prop="paymentAmount" label="已支付金额" align="center" width="120"></el-table-column>
                 <el-table-column prop="paymentPoint" label="已支付积分" align="center" width="120"></el-table-column>
                 <el-table-column prop="roleName" label="角色名称" align="center" ></el-table-column>
                 <el-table-column prop="specificationName" label="规格名称" align="center" ></el-table-column>

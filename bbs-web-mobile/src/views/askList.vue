@@ -70,7 +70,6 @@
                     <van-tab :title="t('askList.40')" :name="20"></van-tab><!--title="未解决"-->
                     <van-tab :title="t('askList.50')" :name="30"></van-tab><!--title="已解决"-->
                     <van-tab :title="t('askList.60')" :name="40"></van-tab><!--title="积分悬赏"-->
-                    <van-tab :title="t('askList.70')" :name="50"></van-tab><!--title="现金悬赏"-->
                 </van-tabs>
             </div>
             <!-- success-text="刷新成功" -->

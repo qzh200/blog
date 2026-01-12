@@ -6,12 +6,6 @@
         </div>
         <div class="data-form label-width-blank" >
             <el-form label-width="auto"  @submit.native.prevent>
-                <el-form-item label="用户类型" :required="true" :error="error.type">
-                    <el-radio-group v-model="state.type">
-                        <el-radio :label="10">本地账号密码用户</el-radio>
-                        <el-radio :label="20">手机用户</el-radio>
-                    </el-radio-group>
-                </el-form-item>
                 <el-form-item label="账号" :required="true" :error="error.account" v-if="state.type == 10">
                     <el-col :span="12"><el-input v-model.trim="state.account" maxlength="30" :clearable="true" show-word-limit></el-input></el-col>
                     <div class="form-help" >会员用户名只能输入由数字、26个英文字母或者下划线组成</div>
@@ -34,9 +28,6 @@
                 </el-form-item>
                 <el-form-item label="密码提示答案" :required="true" :error="error.answer" v-if="state.type == 10">
                     <el-col :span="12"><el-input v-model.trim="state.answer" maxlength="40" :clearable="true" show-word-limit></el-input></el-col>
-                </el-form-item>
-                <el-form-item label="实名认证" :required="true" :error="error.realNameAuthentication">
-                    <el-switch v-model="state.realNameAuthentication" ></el-switch>
                 </el-form-item>
                 <el-form-item label="用户状态" :required="true" :error="error.state">
                     <el-radio-group v-model="state.state">

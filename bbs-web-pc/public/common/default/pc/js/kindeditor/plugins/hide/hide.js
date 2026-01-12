@@ -216,12 +216,6 @@ KindEditor.plugin('hide', function(K) {
 							pointBox[0].focus();
 							return;
 						}
-					}else if(tabIndexBox == 4){//余额购买可见  正整数,也可接收正浮点数，两位小数
-						if (amount == "" || !/^(([1-9]\d*)(\.\d{1,2})?)$|(0\.0?([1-9]\d?))$/.test(amount)) {
-							K.popupMessage(self.lang('pleaseEnterAmount'));//请输入大于0的金额
-							amountBox[0].focus();
-							return;
-						}
 					}
 					
 					var htmlValue = processHtmlBefore(self.bodyHtml());
@@ -237,9 +231,6 @@ KindEditor.plugin('hide', function(K) {
 						
 					}else if(tabIndexBox == 3){//积分购买可见
 						htmlValue = replaceTab(htmlValue,"hide","inputValue_40",""+point+""); 
-						
-					}else if(tabIndexBox == 4){//余额购买可见
-						htmlValue = replaceTab(htmlValue,"hide","inputValue_50",""+amount+""); 
 						
 					}
 					if(tabIndexBox == 0 || tabIndexBox == 2 || tabIndexBox == 3 || tabIndexBox == 4){
@@ -271,10 +262,6 @@ KindEditor.plugin('hide', function(K) {
 							selectedNode.attr('class','inputValue_40');
 							selectedNode.attr('hide-type',40);
 							selectedNode.attr('input-value',point);
-						}else if(tabIndexBox == 4){//余额购买可见
-							selectedNode.attr('class','inputValue_50');
-							selectedNode.attr('hide-type',50);
-							selectedNode.attr('input-value',amount);
 						}
 						self.hideDialog();
 					}else{//添加
@@ -286,8 +273,6 @@ KindEditor.plugin('hide', function(K) {
 							html = "<hide class='inputValue_30' hide-type='30' input-value='"+grade+"' description='"+gradeTag+"'></hide>";
 						}else if(tabIndexBox == 3){//积分购买可见
 							html = "<hide class='inputValue_40' hide-type='40' input-value='"+point+"'></hide>";
-						}else if(tabIndexBox == 4){//余额购买可见
-							html = "<hide class='inputValue_50' hide-type='50' input-value='"+amount+"'></hide>";
 						}
 					//	self.insertHtml(html).hideDialog().focus();
 						self.hideDialog();
@@ -352,9 +337,6 @@ KindEditor.plugin('hide', function(K) {
 			if(item == "hidePoint"){
 				tabTitle4 = self.lang('pointsPurchaseVisible');//积分购买可见
 			}
-			if(item == "hideAmount"){
-				tabTitle5 = self.lang('balancePurchaseVisible');//余额购买可见
-			}
 		}
 
 		tabs.add({
@@ -373,10 +355,6 @@ KindEditor.plugin('hide', function(K) {
 			title : tabTitle4,//积分购买可见
 			panel : K('.tab4', div)
 		});
-		tabs.add({
-			title : tabTitle5,//余额购买可见
-			panel : K('.tab5', div)
-		});
 		
 		//第一次打开时显示
 		if(options.hideVisibleType != ""){
@@ -388,8 +366,6 @@ KindEditor.plugin('hide', function(K) {
 				tabIndex = 2;
 			}else if(options.hideVisibleType == 40){//积分购买可见
 				tabIndex = 3;
-			}else if(options.hideVisibleType == 50){//余额购买可见
-				tabIndex = 4;
 			}
 			
 		}else{

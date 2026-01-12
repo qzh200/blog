@@ -172,30 +172,6 @@
         state.serviceNavList.push(serviceNav_15);
 
 
-        let serviceNav_16 = new Object() as ServiceNav;
-        serviceNav_16.name = t('serviceNav.160')//余额
-        serviceNav_16.currentItemPathList = [];
-        serviceNav_16.currentItemPathList.push('/user/control/balance');
-        serviceNav_16.toPath = '/user/control/balance';
-        serviceNav_16.selected = false;
-        state.serviceNavList.push(serviceNav_16);
-
-        let serviceNav_17 = new Object() as ServiceNav;
-        serviceNav_17.name = t('serviceNav.170')//发红包
-        serviceNav_17.currentItemPathList = [];
-        serviceNav_17.currentItemPathList.push('/user/control/giveRedEnvelopeList');
-        serviceNav_17.toPath = '/user/control/giveRedEnvelopeList';
-        serviceNav_17.selected = false;
-        state.serviceNavList.push(serviceNav_17);
-
-        let serviceNav_18 = new Object() as ServiceNav;
-        serviceNav_18.name = t('serviceNav.180')//收红包
-        serviceNav_18.currentItemPathList = [];
-        serviceNav_18.currentItemPathList.push('/user/control/receiveRedEnvelopeList');
-        serviceNav_18.toPath = '/user/control/receiveRedEnvelopeList';
-        serviceNav_18.selected = false;
-        state.serviceNavList.push(serviceNav_18);
-
         let serviceNav_19 = new Object() as ServiceNav;
         serviceNav_19.name = t('serviceNav.190')//修改个人资料
         serviceNav_19.currentItemPathList = [];
@@ -203,14 +179,6 @@
         serviceNav_19.toPath = '/user/control/editUser';
         serviceNav_19.selected = false;
         state.serviceNavList.push(serviceNav_19);
-
-        let serviceNav_20 = new Object() as ServiceNav;
-        serviceNav_20.name = t('serviceNav.200')//实名认证
-        serviceNav_20.currentItemPathList = [];
-        serviceNav_20.currentItemPathList.push('/user/control/realNameAuthentication');
-        serviceNav_20.toPath = '/user/control/realNameAuthentication';
-        serviceNav_20.selected = false;
-        state.serviceNavList.push(serviceNav_20);
 
         let serviceNav_21 = new Object() as ServiceNav;
         serviceNav_21.name = t('serviceNav.210')//举报

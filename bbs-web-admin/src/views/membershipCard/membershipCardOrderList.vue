@@ -27,7 +27,6 @@
                         </el-popover>
                     </template>
                 </el-table-column>
-                <el-table-column prop="paymentAmount" label="已支付金额" align="center" width="120"></el-table-column>
                 <el-table-column prop="paymentPoint" label="已支付积分" align="center" width="120"></el-table-column>
                 <el-table-column prop="roleName" label="角色名称" align="center" ></el-table-column>
                 <el-table-column prop="specificationName" label="规格名称" align="center" ></el-table-column>

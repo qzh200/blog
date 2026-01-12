@@ -206,11 +206,10 @@ public class UserImportController {
                 userData.setNickname(getCellValue(getCell(row, 1)));
                 userData.setLevel(getCellValue(getCell(row, 2)));
                 userData.setEmail(getCellValue(getCell(row, 3)));
-                userData.setBalance(getCellValue(getCell(row, 4)));
-                userData.setPoint(getCellValue(getCell(row, 5)));
-                userData.setRemark(getCellValue(getCell(row, 6)));
-                userData.setRole(getCellValue(getCell(row, 7)));
-                userData.setMobile(getCellValue(getCell(row, 8)));
+                userData.setPoint(getCellValue(getCell(row, 4)));
+                userData.setRemark(getCellValue(getCell(row, 5)));
+                userData.setRole(getCellValue(getCell(row, 6)));
+                userData.setMobile(getCellValue(getCell(row, 7)));
                 
                 // 只处理至少有用户名的行
                 if (StringUtils.isNotBlank(userData.getUsername())) {
@@ -326,21 +325,6 @@ public class UserImportController {
                 }
             }
         }
-        
-        // 验证预存款（如果有）
-        if (StringUtils.isNotBlank(userData.getBalance())) {
-            try {
-                double balance = Double.parseDouble(userData.getBalance());
-                if (balance < 0) {
-                    error.put("balanceError", "预存款不能为负数");
-                    hasError = true;
-                }
-            } catch (NumberFormatException e) {
-                error.put("balanceError", "预存款必须是数字");
-                hasError = true;
-            }
-        }
-        
         // 验证积分（如果有）
         if (StringUtils.isNotBlank(userData.getPoint())) {
             try {
@@ -490,11 +474,10 @@ public class UserImportController {
         header.createCell(1).setCellValue("昵称（必填）");
         header.createCell(2).setCellValue("等级（不写默认0）");
         header.createCell(3).setCellValue("Email地址（不写默认空）");
-        header.createCell(4).setCellValue("预存款（不写默认0）");
-        header.createCell(5).setCellValue("积分（不写默认0）");
-        header.createCell(6).setCellValue("备注（不写默认无）");
-        header.createCell(7).setCellValue("角色（不写默认无）");
-        header.createCell(8).setCellValue("手机号（选填）");
+        header.createCell(4).setCellValue("积分（不写默认0）");
+        header.createCell(5).setCellValue("备注（不写默认无）");
+        header.createCell(6).setCellValue("角色（不写默认无）");
+        header.createCell(7).setCellValue("手机号（选填）");
         
         // 应用表头样式
         for (int i = 0; i <= 8; i++) {
@@ -506,11 +489,10 @@ public class UserImportController {
         sheet.setColumnWidth(1, 20 * 256);  // 昵称
         sheet.setColumnWidth(2, 15 * 256);  // 等级
         sheet.setColumnWidth(3, 30 * 256);  // Email
-        sheet.setColumnWidth(4, 15 * 256);  // 预存款
-        sheet.setColumnWidth(5, 15 * 256);  // 积分
-        sheet.setColumnWidth(6, 30 * 256);  // 备注
-        sheet.setColumnWidth(7, 20 * 256);  // 角色
-        sheet.setColumnWidth(8, 20 * 256);  // 手机号
+        sheet.setColumnWidth(4, 15 * 256);  // 积分
+        sheet.setColumnWidth(5, 30 * 256);  // 备注
+        sheet.setColumnWidth(6, 20 * 256);  // 角色
+        sheet.setColumnWidth(7, 20 * 256);  // 手机号
         
         // 创建示例数据行
         Row exampleRow = sheet.createRow(1);
@@ -518,11 +500,10 @@ public class UserImportController {
         exampleRow.createCell(1).setCellValue("测试用户");
         exampleRow.createCell(2).setCellValue("1");
         exampleRow.createCell(3).setCellValue("test@example.com");
-        exampleRow.createCell(4).setCellValue("100.00");
-        exampleRow.createCell(5).setCellValue("500");
-        exampleRow.createCell(6).setCellValue("批量导入测试用户");
-        exampleRow.createCell(7).setCellValue("普通用户");
-        exampleRow.createCell(8).setCellValue("13800138000");
+        exampleRow.createCell(4).setCellValue("500");
+        exampleRow.createCell(5).setCellValue("批量导入测试用户");
+        exampleRow.createCell(6).setCellValue("普通用户");
+        exampleRow.createCell(7).setCellValue("13800138000");
         
         // 设置响应头
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -539,7 +520,6 @@ public class UserImportController {
         private String nickname;        // 昵称
         private String level;           // 等级
         private String email;           // Email地址
-        private String balance;         // 预存款
         private String point;           // 积分
         private String remark;          // 备注
         private String role;            // 角色
@@ -568,12 +548,6 @@ public class UserImportController {
         }
         public void setEmail(String email) {
             this.email = email;
-        }
-        public String getBalance() {
-            return balance;
-        }
-        public void setBalance(String balance) {
-            this.balance = balance;
         }
         public String getPoint() {
             return point;

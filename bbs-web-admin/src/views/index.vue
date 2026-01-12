@@ -122,14 +122,6 @@
                             </template>
                             <el-menu-item index="4-400300-1" v-if="navigationSubMenuVerifyPermission('4-400300-1')">系统通知列表</el-menu-item>
                         </el-sub-menu>
-                        <el-sub-menu index="4-400400" v-show="letfNavigationMenuVerifyPermission('4-400400')">
-                            <template #title>
-								<el-icon class="icon"><Coin /></el-icon>
-                                <span>平台收益管理</span>
-                            </template>
-                            <el-menu-item index="4-400400-1" v-if="navigationSubMenuVerifyPermission('4-400400-1')">解锁话题隐藏内容分成</el-menu-item>
-                            <el-menu-item index="4-400400-2" v-if="navigationSubMenuVerifyPermission('4-400400-2')">问答悬赏平台分成</el-menu-item>
-                        </el-sub-menu>
 						<el-sub-menu index="4-400600" v-show="letfNavigationMenuVerifyPermission('4-400600')">
                             <template #title>
 								<el-icon class="icon"><Warning /></el-icon>
@@ -152,28 +144,6 @@
                             <el-menu-item index="5-500100-4" v-if="navigationSubMenuVerifyPermission('5-500100-4')">数据库备份/还原</el-menu-item>
                             <el-menu-item index="5-500100-5" v-if="navigationSubMenuVerifyPermission('5-500100-5')">服务器节点参数</el-menu-item>
                             <el-menu-item index="5-500100-6" v-if="navigationSubMenuVerifyPermission('5-500100-6')">升级</el-menu-item>
-                        </el-sub-menu>
-                        <el-sub-menu index="5-500200" v-show="letfNavigationMenuVerifyPermission('5-500200')">
-                            <template #title>
-								<el-icon class="icon"><Wallet /></el-icon>
-                                <span>支付管理</span>
-                            </template>
-                            <el-menu-item index="5-500200-1" v-if="navigationSubMenuVerifyPermission('5-500200-1')">在线支付接口</el-menu-item>
-                        </el-sub-menu>
-                        <el-sub-menu index="5-500300" v-show="letfNavigationMenuVerifyPermission('5-500300')">
-                            <template #title>
-								<el-icon class="icon"><Message /></el-icon>
-                                <span>短信管理</span>
-                            </template>
-                            <el-menu-item index="5-500300-1" v-if="navigationSubMenuVerifyPermission('5-500300-1')">短信接口列表</el-menu-item>
-                            <el-menu-item index="5-500300-2" v-if="navigationSubMenuVerifyPermission('5-500300-2')">短信发送错误日志</el-menu-item>
-                        </el-sub-menu>
-                        <el-sub-menu index="5-500500" v-show="letfNavigationMenuVerifyPermission('5-500500')">
-                            <template #title>
-								<el-icon class="icon"><Platform /></el-icon>
-                                <span>第三方服务管理</span>
-                            </template>
-                            <el-menu-item index="5-500500-1" v-if="navigationSubMenuVerifyPermission('5-500500-1')">第三方登录接口列表</el-menu-item>
                         </el-sub-menu>
                         <el-sub-menu index="5-500700" v-show="letfNavigationMenuVerifyPermission('5-500700')">
                             <template #title>

@@ -90,10 +90,6 @@
                     <el-col :span="6"><el-input v-model.trim="state.privateMessage_submitQuantity" :required="true" maxlength="8" :clearable="true" show-word-limit></el-input></el-col>
                     <div class="form-help" >0为每次都出现验证码</div>
                 </el-form-item>
-                <el-form-item label="AI助手每分钟提交超过" :error="error.aiAssistant_submitQuantity" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.aiAssistant_submitQuantity" :required="true" maxlength="8" :clearable="true" show-word-limit></el-input></el-col>
-                    <div class="form-help" >0为每次都出现验证码</div>
-                </el-form-item>
                 <el-form-item label="举报每分钟提交超过" :error="error.report_submitQuantity" v-show="state.activeTag == 10">
                     <el-col :span="6"><el-input v-model.trim="state.report_submitQuantity" :required="true" maxlength="8" :clearable="true" show-word-limit></el-input></el-col>
                     <div class="form-help" >0为每次都出现验证码</div>
@@ -195,30 +191,6 @@
                         <el-radio :label="false">否</el-radio>
                     </el-radio-group>
                 </el-form-item>
-                <el-form-item label="实名用户才允许提交话题" :error="error.realNameUserAllowTopic" v-show="state.activeTag == 10">
-                    <el-radio-group v-model="state.realNameUserAllowTopic">
-                        <el-radio :label="true">是</el-radio>
-                        <el-radio :label="false">否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="实名用户才允许提交评论" :error="error.realNameUserAllowComment" v-show="state.activeTag == 10">
-                    <el-radio-group v-model="state.realNameUserAllowComment">
-                        <el-radio :label="true">是</el-radio>
-                        <el-radio :label="false">否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="实名用户才允许提交问题" :error="error.realNameUserAllowQuestion" v-show="state.activeTag == 10">
-                    <el-radio-group v-model="state.realNameUserAllowQuestion">
-                        <el-radio :label="true">是</el-radio>
-                        <el-radio :label="false">否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="实名用户才允许提交答案" :error="error.realNameUserAllowAnswer" v-show="state.activeTag == 10">
-                    <el-radio-group v-model="state.realNameUserAllowAnswer">
-                        <el-radio :label="true">是</el-radio>
-                        <el-radio :label="false">否</el-radio>
-                    </el-radio-group>
-                </el-form-item>
                 <el-form-item label="全局允许提交举报" :error="error.allowReport" v-show="state.activeTag == 10">
                     <el-radio-group v-model="state.allowReport">
                         <el-radio :label="true">是</el-radio>
@@ -249,11 +221,6 @@
                     </div>
                     <div class="form-help" >空值为不限制</div>
                 </el-form-item>
-                <el-form-item label="解锁话题隐藏内容平台分成比例" :error="error.topicUnhidePlatformShareProportion" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.topicUnhidePlatformShareProportion" maxlength="3" :clearable="true" show-word-limit></el-input></el-col>
-                    <el-col :span="6" style="margin-left: 10px;">%</el-col>
-                    <div class="form-help" >0至100之间的整数</div>
-                </el-form-item> 
                 
                 
                 <el-form-item label="问题悬赏积分下限" :error="error.questionRewardPointMin" v-show="state.activeTag == 10">
@@ -263,29 +230,6 @@
                 <el-form-item label="问题悬赏积分上限" :error="error.questionRewardPointMax" v-show="state.activeTag == 10">
                     <el-col :span="6"><el-input v-model.trim="state.questionRewardPointMax" :required="true" maxlength="15" :clearable="true" show-word-limit></el-input></el-col>
                     <div class="form-help" >空为无限制 0则不允许悬赏积分</div>
-                </el-form-item>
-                <el-form-item label="问题悬赏金额下限" :error="error.questionRewardAmountMin" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.questionRewardAmountMin" :required="true" maxlength="12" :clearable="true" show-word-limit></el-input></el-col>
-                    <div class="form-help" >0至99999999之间的金额</div>
-                </el-form-item>
-                <el-form-item label="问题悬赏金额上限" :error="error.questionRewardAmountMax" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.questionRewardAmountMax" :required="true" maxlength="12" :clearable="true" show-word-limit></el-input></el-col>
-                    <div class="form-help" >空为无限制 0则不允许悬赏金额</div>
-                </el-form-item>
-            
-                <el-form-item label="悬赏问答平台分成比例" :error="error.questionRewardPlatformShareProportion" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.questionRewardPlatformShareProportion" maxlength="3" :clearable="true" show-word-limit></el-input></el-col>
-                    <el-col :span="6" style="margin-left: 10px;">%</el-col>
-                    <div class="form-help" >0至100之间的整数</div>
-                </el-form-item> 
-                
-                <el-form-item label="发红包总金额下限" :error="error.giveRedEnvelopeAmountMin" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.giveRedEnvelopeAmountMin" :required="true" maxlength="12" :clearable="true" show-word-limit></el-input></el-col>
-                    <div class="form-help" >0.01至99999999之间的金额</div>
-                </el-form-item>
-                <el-form-item label="发红包总金额上限" :error="error.giveRedEnvelopeAmountMax" v-show="state.activeTag == 10">
-                    <el-col :span="6"><el-input v-model.trim="state.giveRedEnvelopeAmountMax" :required="true" maxlength="12" :clearable="true" show-word-limit></el-input></el-col>
-                    <div class="form-help" >空为无限制 0则不允许发红包</div>
                 </el-form-item>
                 <el-form-item label="敏感词过滤" :error="error.allowFilterWord" v-show="state.activeTag == 10">
                     <el-radio-group v-model="state.allowFilterWord" size="large">
@@ -480,13 +424,6 @@
                 <el-form-item label="积分购买可见" v-show="state.activeTag == 20">
                     <span class="icon-hide" style="width: 16px;height: 16px;position: relative;top: -1px;margin-left: -9px;margin-right: 9px;"></span>
                     <el-radio-group class="radioPosition"  v-model="state.topicEditorTagObject.hidePoint">
-                        <el-radio :label="true">打开</el-radio>
-                        <el-radio :label="false">关闭</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item label="余额购买可见" v-show="state.activeTag == 20">
-                    <span class="icon-hide" style="width: 16px;height: 16px;position: relative;top: -1px;margin-left: -9px;margin-right: 9px;"></span>
-                    <el-radio-group class="radioPosition"  v-model="state.topicEditorTagObject.hideAmount">
                         <el-radio :label="true">打开</el-radio>
                         <el-radio :label="false">关闭</el-radio>
                     </el-radio-group>

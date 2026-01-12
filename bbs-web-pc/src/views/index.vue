@@ -148,8 +148,6 @@
                                                     <span v-if="key == 30">{{t('index.70')}}</span>
                                                     <!--积分购买可见-->
                                                     <span v-if="key == 40">{{t('index.80')}}</span>
-                                                    <!--余额购买可见-->
-                                                    <span v-if="key == 50">{{t('index.90')}}</span>
                                                 </template>
                                                 <span class="circle point" v-if="value">
                                                     <Icon name="unlock-solid" size="14px" class="icon"/>

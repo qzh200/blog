@@ -77,10 +77,6 @@
                             <!-- 积分悬赏 -->
                             <router-link :to="{path: '/askList', query: {filterCondition: 40}}" >{{t('askList.50')}}</router-link>
                         </li>
-                        <li :class="state.filterCondition == '50' ? 'active' : ''">
-                            <!-- 现金悬赏 -->
-                            <router-link :to="{path: '/askList', query: {filterCondition: 50}}" >{{t('askList.60')}}</router-link>
-                        </li>
                         <div class="postQuestionButton">
                             <!-- 提问题 -->
                             <el-button type="primary" @click="router.push({path: '/addQuestion'})" plain style="width: 100%;" ><Icon name="question-answer-line" size="15px" class="icon"/>{{t('askList.70')}}</el-button>  

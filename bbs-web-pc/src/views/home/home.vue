@@ -195,38 +195,10 @@
                                 </router-link>
                             </li>
                             <li class="item">
-                                <router-link tag="a" to="/user/control/balance" class="a-pic">
-                                    <div class="img" ><Icon name="deposit" size="48px"/></div> 	
-                                    <!-- 余额 -->
-                                    <h4 class="title">{{t('home.220')}}</h4>
-                                </router-link>
-                            </li>
-                            <li class="item">
-                                <router-link tag="a" to="/user/control/giveRedEnvelopeList" class="a-pic">
-                                    <div class="img" ><Icon name="redEnvelope-2" size="48px"/></div> 
-                                    <!-- 发红包 -->
-                                    <h4 class="title">{{t('home.230')}}</h4>	
-                                </router-link>
-                            </li>
-                            <li class="item">
-                                <router-link tag="a" to="/user/control/receiveRedEnvelopeList" class="a-pic">
-                                    <div class="img" ><Icon name="redEnvelope-2" size="48px"/></div> 
-                                    <!-- 收红包 -->
-                                    <h4 class="title">{{t('home.240')}}</h4>	
-                                </router-link>
-                            </li>
-                            <li class="item">
                                 <router-link tag="a" to="/user/control/editUser" class="a-pic">
                                     <div class="img" ><Icon name="pencil-alt" size="48px"/></div> 
                                     <!-- 修改个人资料 -->
                                     <h4 class="title">{{t('home.250')}}</h4>	
-                                </router-link>
-                            </li>
-                            <li class="item">
-                                <router-link tag="a" to="/user/control/realNameAuthentication" class="a-pic">
-                                    <div class="img" ><Icon name="realNameAuthentication" size="48px"/></div> 
-                                    <!-- 实名认证 -->
-                                    <h4 class="title">{{t('home.260')}}</h4>	
                                 </router-link>
                             </li>
                             <li class="item">
