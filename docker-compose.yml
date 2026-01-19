@@ -17,14 +17,14 @@ services:
       - mysql
     networks:
       - bbs-network
-    restart: always
+    restart: no
 
   mysql:
     image: mysql:8.0
     container_name: mysql
     ports:
       - "33066:3306"
-    restart: always
+    restart: no
     environment:
       MYSQL_ROOT_PASSWORD: Q5EC6VV7Zs # 请根据需要修改密码
       MYSQL_DATABASE: bbs-pro  # 可选：创建默认数据库
